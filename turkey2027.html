@@ -1,0 +1,1464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>turkey2027</title>
+    <meta content="Bryan M" name="author" />
+    <meta name="robots" content="noindex" />
+    <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+    <style>
+                                  * {
+                                    margin: 0;
+                                    padding: 0;
+                                  }
+
+                                  html {
+                              	  background: black;
+                                    background-image: url(voyagehotel.jpeg);
+                                    background-size:     cover;
+                                    background-repeat:   no-repeat;
+                                    height: 100dvh;
+
+
+
+                                    background-color: rgba(0,0,225,.7);
+            background-blend-mode: overlay;
+
+
+      animation: fadeinonload 1s;
+
+                                  }
+
+
+            @keyframes fadeinonload {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Firefox < 16 */
+      @-moz-keyframes fadeinonload {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Safari, Chrome and Opera > 12.1 */
+      @-webkit-keyframes fadeinonload {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Internet Explorer */
+      @-ms-keyframes fadeinonload {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+      /* Opera < 12.1 */
+      @-o-keyframes fadeinonload {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+
+
+
+
+
+                                  body {
+                                    overflow: hidden;
+                                  }
+
+                                  ::-webkit-scrollbar {
+                                    display: none;
+                                  }
+
+                                  /* main square menu item */
+                                  .square_menu_icon {
+                                    display: block;
+                                    position: absolute;
+                                    overflow: hidden;
+                                    margin: 0;
+                                    padding: 0;
+                                    width: 45px;
+                                    height: 45px;
+                                    font-size: 0;
+                                    text-indent: -9999px;
+                                    appearance: none;
+                                    box-shadow: none;
+                                    border: none;
+                                    cursor: pointer;
+                                    transition: background 0.3s;
+                                    top: 57%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    background-color: transparent;
+                                    z-index: 99;
+                                  }
+
+                                  .square_menu_icon:focus {
+                                    outline: none;
+                                  }
+
+                                  .square_menu_icon span {
+                                    display: block;
+                                    position: absolute;
+                                    top: 15px;
+                                    left: 0;
+                                    right: 0;
+                                    height: 7px;
+                                    background: #fff;
+                                  }
+
+                                  .square_menu_icon span:before,
+                                  .square_menu_icon span:after {
+                                    position: absolute;
+                                    display: block;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 7px;
+                                    background-color: #fff;
+                                    content: "";
+                                  }
+
+                                  .square_menu_icon span:before {
+                                    top: -14px;
+                                  }
+
+                                  .square_menu_icon span:after {
+                                    bottom: -14px;
+                                  }
+
+                                  .square_menu_icon-X span {
+                                    transition: background 0s 0.3s;
+                                  }
+
+                                  .square_menu_icon-X span:before,
+                                  .square_menu_icon-X span:after {
+                                    transition-duration: 0.3s, 0.3s;
+                                    transition-delay: 0.3s, 0s;
+                                  }
+
+                                  .square_menu_icon-X span:before {
+                                    transition-property: top, transform;
+                                  }
+
+                                  .square_menu_icon-X span:after {
+                                    transition-property: bottom, transform;
+                                  }
+
+                                  .square_menu_icon-X.is-active span {
+                                    background: none;
+                                  }
+
+                                  .square_menu_icon-X.is-active span:before {
+                                    top: 0;
+                                    transform: rotate(45deg);
+                                  }
+
+                                  .square_menu_icon-X.is-active span:after {
+                                    bottom: 0;
+                                    transform: rotate(-45deg);
+                                  }
+
+                                  .square_menu_icon-X.is-active span:before,
+                                  .square_menu_icon-X.is-active span:after {
+                                    transition-delay: 0s, 0.3s;
+                                  }
+                                  /* end of main square menu item */
+
+                                  /* main screen containing everything */
+                                  nav {
+                                    position: absolute;
+                                    top: 9vh;
+                                    left: 9vh;
+                                    transform: translate(-50%, -50%);
+                                    border-radius: 5px;
+                                    width: 75px;
+                                    height: 75px;
+                                    z-index: 4;
+                                    border: 5px solid white;
+                                    box-shadow: 10px 10px 25px black;
+                                  }
+
+
+                                  nav:active {
+                                    border: 5px solid white; //dodgerBlue;
+                                  }
+
+                                  section {
+                                    width: 100vw;
+                                    position: absolute;
+                                  }
+
+                                  .content {
+                                    width: 90%;
+                                    opacity: 1;
+                                    margin: 0 auto;
+                                  }
+
+                                  .title {
+                                    color: white;
+                                    font-family: 'Kalam';
+                                    font-size: 6vh;
+                                    font-weight: bold;
+                                    margin-top: 20vh;
+                                    height: 13vh;
+                                    font-weight: 900;
+                                  }
+
+
+                                  .dates {
+                                    font-family: 'Kalam';
+                                    color: white;
+                                    font-size: 20px;
+                                  }
+
+                                  .pretitle {
+                                    font-family: 'Kalam';
+                                    transform: rotate(-5deg);
+                                    height: 2vh;
+                                    color: white;
+                                    font-size: 3vh;
+                                    float: left;
+                                  }
+
+                                  #scheduled {
+                                    float: left;
+                                    padding-top: 1vh;
+                                    width: 100%;
+                                  }
+
+                                  #dcomp1 {
+                                    float: left;
+                                    padding-left: 5vw;
+                                  }
+
+                                  #img {
+                                    transition-duration: 0.4s;
+                                  }
+
+                                  #img.half {
+                                    background: white;
+                                    padding: 3px;
+                                    border-radius: 5px;
+                                    box-shadow: 10px 10px 10px black;
+                                    transform: scale(6) translateX(-45%) translateY(-110%);
+                                    content: url(qrcode.png);
+                                  }
+
+                                  .spacer1 {
+                                    height: 5vh;
+                                  }
+
+                                  .contentinfo {
+                                    font-family: 'Kalam';
+                                    color: white;
+                                    font-size: 1.7vh;
+                                    margin-top: 2vh;
+                                    font-weight: 900;
+                                  }
+
+                                   #flagicon {
+                                    position: absolute;
+                                    right: 1vh;
+                                    font-size: 3vh;
+                                    animation: fadeIn 2s ease-in;
+                                  }
+
+                                  #xdcomp1 {
+                                    font-size: 5.5vw; /*3.3vh;*/
+                                    color: white;
+                }
+
+                                  @keyframes fadeIn {
+                                    0% {
+                                      opacity: 0;
+                                    }
+
+                                    100% {
+                                      opacity: 1;
+                                    }
+                                  }
+
+
+                                  /* end of main screen containing everything */
+
+                                  /* main square menu */
+                                  .bubble_menu {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    background-color: rgba(34, 25, 160);
+                                    width: 75px;
+                                    height: 75px;
+                                    z-index: 4;
+                                    cursor: pointer;
+                                    //border-radius: 5px;
+                                    //border: 2px solid white;
+                        //            box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+
+                                  }
+                                  /* main square menu */
+
+                                  /* sub menu squares */
+                                  #one,
+                                  #two,
+                                  #three,
+                                  #four,
+                                  #five,
+                                  #six,
+                                  #seven,
+                                  #eight {
+                                    position: absolute;
+                                    //top: 50%;
+                                    //left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    border-radius: 5px;
+                                    width: 75px;
+                                    height: 75px;
+                                    z-index: 3;
+                                    text-align: center;
+                                    border: 5px solid white;
+                                    cursor: pointer;
+                                    opacity: 0.0;
+                                    //box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+
+                                  }
+
+                                  #one {
+                                    background-color: salmon;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #two {
+                                    background-color: darkKhaki;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #three {
+                                    background-color: orchid;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #four {
+                                    background-color: lightSteelBlue;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #five {
+                                    background-color: cyan;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #six {
+                                    background-color: lightGreen;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #seven {
+                                    background-color: mediumSlateBlue;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  #eight {
+                                    background-color: gold;
+                                    display: flex;
+                                    justify-content: center;
+                                    //box-shadow: 10px 10px 25px black;
+                                  }
+
+                                  .shadow {
+
+                                    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5),
+                                    10px 10px 25px black;
+                                    opacity: 0.0;
+                                  }
+
+                                  /*salmon;*/
+                                  #onetxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*darkKhaki;*/
+                                  #twotxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*orchid;*/
+                                  #threetxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*lightSteelBlue;*/
+                                  #fourtxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*cyan;*/
+                                  #fivetxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*lightGreen;*/
+                                  #sixtxt {
+                                    margin: auto;
+                                    font-size: 30px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*mediumSlateBlue;*/
+                                  #seventxt {
+                                    margin: auto;
+                                    font-size: 35px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  /*gold*/
+                                  #eighttxt {
+                                    margin: auto;
+                                    font-size: 25px;
+                                    color: navy;
+                                    font-family: 'Kalam';
+                                    line-height: 99%;
+                                  }
+
+                                  #one:active {
+                                    border: 5px solid white; //salmon;
+                                  }
+
+                                  #two:active {
+                                    border: 5px solid white; //darkKhaki;
+                                  }
+
+                                  #three:active {
+                                    border: 5px solid white; //orchid;
+                                  }
+
+                                  #four:active {
+                                    border: 5x solid white; //lightSteelBlue;
+                                  }
+
+                                  #five:active {
+                                    border: 5px solid white; //cyan;
+                                  }
+
+                                  #six:active {
+                                    border: 5px solid white; //lightGreen;
+                                  }
+
+                                  #seven:active {
+                                    border: 5px solid white; //mediumSlateBlue;
+                                  }
+
+                                  #eight:active {
+                                    border: 5px solid white; //gold
+                                  }
+
+
+                                  @-webkit-keyframes blob {
+                                    50% {
+                                      width: 85px;
+                                      height: 85px;
+                                    }
+
+                                    100% {
+                                      width: 75px;
+                                      height: 75px;
+                                      )
+                                    }
+                                  }
+
+                                  @-moz-keyframes blob {
+                                    50% {
+                                      width: 85px;
+                                      height: 85px;
+                                    }
+
+                                    100% {
+                                      width: 75px;
+                                      height: 75px;
+                                      )
+                                    }
+                                  }
+
+                                  @-o-keyframes blob {
+                                    50% {
+                                      width: 85px;
+                                      height: 85px;
+                                    }
+
+                                    100% {
+                                      width: 75px;
+                                      height: 75px;
+                                      )
+                                    }
+                                  }
+
+                                  @keyframes blob {
+                                    50% {
+                                      width: 85px;
+                                      height: 85px;
+                                    }
+
+                                    100% {
+                                      width: 75px;
+                                      height: 75px;
+                                    }
+                                  }
+
+
+                                  .blob {
+                                    -webkit-animation: blob 0.5s linear;
+                                    -moz-animation: blob 0.5s linear;
+                                    -o-animation: blob 0.5s linear;
+                                    animation: blob 0.5s linear;
+                                  }
+
+                                  /* end of sub menu squares */
+
+
+
+                              	  body {
+                              		  animation: grow 1s;
+                              	       }
+
+                              @keyframes grow {
+                                  0% { transform: scale(.1); }
+                                100% { transform: scale(1); }
+                              }
+
+
+
+
+
+                                  #popuppanel {
+                                    position: absolute;
+                                    top: 5vh;
+                                    right: 2vw;
+                                    display: none;
+                                    font-family: 'Kalam';
+                                    background-color: dodgerBlue;
+                                    color: white;
+                                    box-shadow: 10px 10px 25px black;
+                                    opacity: 0.8;
+                                    font-size: 3vh;
+                                    border-radius: 5px;
+                                    border: 1px solid blue;
+                                    padding: 10px;
+                                    text-align: left;
+                                    width: 30vw;
+                                    height: 15vw;
+                                    cursor: pointer;
+                                  }
+
+
+                                  /* marquee CSS */
+
+                                  .marquee {
+                              		display: none;
+                                    font-family: Arial, Helvetica, sans-serif;
+                                    font-size: 35px;
+                                    font-style: italic;
+                                    height: 60px;
+                                    width: 100vw;
+                                    overflow: hidden;
+                                    position: relative;
+                                    background: transparent;
+                                    color: white;
+                                  }
+
+                                  /* marquee for temporary use */
+                                  .marquee p {
+                              	  background: transparent;
+                                    color: blue;
+                                    font-weight: 400;
+                                    width: 150%;
+                                    height: 100%;
+                              	    margin: 0;
+                                    line-height: 60px;
+                                    text-align: center;
+                                    -moz-transform: translateX(100%);
+                                    -webkit-transform: translateX(100%);
+                                    transform: translateX(100%);
+                                    -moz-animation: scroll-right 10s linear;
+                                    -webkit-animation: scroll-right 10s linear;
+                                    animation: scroll-right 10s linear;
+                                  }
+
+                                  @-moz-keyframes scroll-right {
+                                    0% {
+                                      -moz-transform: translateX(-100%);
+                                    }
+
+                                    100% {
+                                      -moz-transform: translateX(100%);
+                                    }
+                                  }
+
+                                  @-webkit-keyframes scroll-right {
+                                    0% {
+                                      -webkit-transform: translateX(-100%);
+                                    }
+
+                                    100% {
+                                      -webkit-transform: translateX(100%);
+                                    }
+                                  }
+
+                                  @keyframes scroll-right {
+                                    0% {
+                                      -moz-transform: translateX(-100%);
+                                      -webkit-transform: translateX(-100%);
+                                      transform: translateX(-100%);
+                                    }
+
+                                    100% {
+                                      -moz-transform: translateX(100%);
+                                      -webkit-transform: translateX(100%);
+                                      transform: translateX(100%);
+                                    }
+                                  }
+                                  /* end of marquee for temporary use */
+
+                                  #warning {
+                                    display: none;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    background: indigo;
+                                    width: 100vw;
+                                    height: 100vh;
+                                    z-index: 999;
+                                    text-align: center;
+                                    color: white;
+                                    padding-top: 40vh;
+                                    font-size: 6vh;
+                                    font-family: 'Kalam';
+                                  }
+
+                                  #cyantxt {
+                                    color:  white;
+                                  }
+
+                                  .photo {
+                                    height: 100vh;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: bottom;
+                              	    transition: background 2s linear;
+                                  }
+
+                                  /* countdown for temporary use */
+                                  #countdown {
+                              	    position: fixed;
+                              	    top: 2vh;
+                              	    right: 2vw;
+                              	    width: 65vw;
+                              	    height: 7vh;
+                              	    line-height: 7.5vh;
+                              	    background: white;
+                              	    color: blue;
+                              	    border-radius: 50px;
+                              	    font-size: 7vw;
+                                    font-family: 'Kalam';
+                              	    font-weight: bold;
+                              	    box-shadow: 10px 10px 25px black;
+                              	    text-align: center;
+                              	    opacity: 0.4;
+                              	    z-index: 99;
+                              	    display: none;
+                                  }
+                                  /* end of countdown for temporary use */
+
+                              #imgx {
+                              	z-index: 999;
+                              }
+
+
+                              #overlay {
+                              	display: none;
+                              	position: absolute;
+                              	left: -10vw;
+                              	top: 1vw;
+                              	animation: fadein 10s;
+                              }
+
+                              @keyframes xxxxxxfadein {
+                                  from { opacity: 0; }
+                                  to   { opacity: 1; }
+                              }
+
+
+
+                              @keyframes fadein {
+                              0% {
+                                  opacity: 0;
+                                }
+                              50% {
+                                  opacity: 1;
+                                }
+                              100% {
+                                  opacity: 0;
+                                }
+                              }
+
+                              #imagewrapper {
+                                position: absolute;
+                              }
+    </style>
+  </head>
+  <body oncontextmenu="return false;">
+    <!--
+        <div id="imagewrapper">
+            <div id="overlay">
+                <img src="dance.gif" alt="x" width="400" height="400" />
+            </div>
+            <div class="marquee" id="marquee"><p id="marqueemsg"></p></div>
+        </div>
+-->
+    <!-- remove when not required 100% is about 40 characters
+
+    <div class="marquee"><p>Note: some stroke indexes have changed on the Old Course.</p></div>
+
+
+    <div id="notavaialble"><img id="img" style="padding-top: 40vh; padding-right: 10vw;float: right; border: 0; height: 40vh; width: 80vw; " src="spain2025.png" alt="x"></div>
+
+    -->
+
+    <div id="warning">Not available in landscape orientation</div>
+
+    <nav id="nav">
+      <div class="bubble_menu" id="icon">
+        <button class="square_menu_icon square_menu_icon-X">
+          <span></span>
+        </button>
+      </div>
+      <div class="bubble" id="one" onclick="doOne()">
+        <a id="onetxt">Sat</a>
+      </div>
+      <div class="bubble" id="two" onclick="doTwo()">
+        <a id="twotxt">Sun</a>
+      </div>
+      <div class="bubble" id="three" onclick="doThree()">
+        <a id="threetxt">Mon</a>
+      </div>
+      <div class="bubble" id="four" onclick="doFour()">
+        <a id="fourtxt">Tue</a>
+      </div>
+      <div class="bubble" id="five" onclick="doFive()">
+        <a id="fivetxt">Final</a>
+      </div>
+      <div class="bubble" id="six" onclick="doSix()">
+        <a id="sixtxt">xxx</a>
+      </div>
+      <div class="bubble" id="seven" onclick="doSeven()">
+        <a id="seventxt">yyy</a>
+      </div>
+      <div class="bubble" id="eight" onclick="doEight()">
+        <a id="eighttxt">Blind<br />golfer</a>
+      </div>
+    </nav>
+    <section class="start">
+      <div class="content">
+        <div class="title">
+          <div class="pretitle">March 26th -31st</div>
+          <div class="spacer1"></div>
+          <div>Turkey 2027</div>
+        </div>
+        <div id="popuppanel"></div>
+        <div class="contentinfo">info, results, hcps, blindgolfer</div>
+        <div class="datescontent">
+          <a class="dates" id="scheduled"></a>
+          <br />
+          <br />
+          <a class="dates" id="xdcomp1">searching for competitions ...</a>
+        </div>
+        <br />
+        <div class="flagicon" id="flagicon">
+          <img
+            id="img"
+            onclick="enlarge(this.id)"
+            style="float: right; border: 0; height: 40px; width: 40px"
+            src="qrcode.png"
+            alt="x" />
+        </div>
+      </div>
+    </section>
+    <!--
+<div id="countdown" onclick="nocountdown()"><img id="imgx" src="close.png" alt="x" style="float: left; height: 7vh;"></div>
+-->
+    <script>
+      // Detect whether device supports orientationchange event, otherwise fall back to
+      // the resize event.
+      var supportsOrientationChange = "onorientationchange" in window,
+        orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+      window.addEventListener(
+        orientationEvent,
+        function () {
+          if (window.orientation == 0) {
+            document.getElementById("warning").style.display = "none";
+          } else if (window.orientation == 90 || window.orientation == -90) {
+            document.getElementById("warning").style.display = "block";
+          }
+        },
+        false
+      );
+
+      /* temporary show countdown */
+      var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+      var firstDate = new Date("06/08/2026 00:1 AM");
+      var tempDate = new Date();
+      var y = tempDate.getFullYear().toString();
+      var xm = tempDate.getMonth();
+      var d = tempDate.getDate();
+      xm++;
+      m = xm.toString();
+      var dstring = m + "/" + d + "/" + y + " 00:1 AM";
+      // get first day of trip
+      var secondDate = new Date(dstring);
+      //var secondDate = new Date();
+      var diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+      // disable run ...
+      if (1 == 2) {
+        //if (firstDate > secondDate) {
+        if (diffDays < 14) {
+          // show marquee for last 14 days
+          document.getElementById("marquee").style.display = "block";
+          setTimeout(function () {
+            document.getElementById("marquee").style.display = "none";
+          }, 9000);
+          // show dancing man for last 14 days
+          document.getElementById("overlay").style.display = "block";
+          setTimeout(function () {
+            document.getElementById("overlay").style.display = "none";
+          }, 9000);
+        }
+        i = 0;
+        var x = setInterval(function () {
+          i++;
+          if (i >= diffDays) {
+            clearInterval(x);
+          }
+          if (i == 1) {
+            document.getElementById("marqueemsg").innerHTML =
+              '<img id="imgx" src="dance.gif" alt="x" style="float: center; height: 7vh;">' + i + " day to go ";
+          } else {
+            document.getElementById("marqueemsg").innerHTML =
+              '<img id="imgx" src="dance.gif" alt="x" style="float: center; height: 7vh;">' + i + " days to go ";
+          }
+        }, 2500 / diffDays);
+      }
+
+      /* end of temporary show countdown */
+
+      function nocountdown() {
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+      }
+
+      // global variables
+      var grayedout = "yes";
+      // menu code
+      var isTop = true;
+      var menuIsOpen = false;
+      var menuIcon = $(".square_menu_icon");
+      var bubblemenu = $(".bubble_menu");
+      var one = $("#one");
+      var two = $("#two");
+      var three = $("#three");
+      var four = $("#four");
+      var five = $("#five");
+      var six = $("#six");
+      var seven = $("#seven");
+      var eight = $("#eight");
+      // menuIcon.click(function() {
+      bubblemenu.click(function () {
+        if (isTop === true) {
+          $("#nav").animate(
+            {
+              top: "50%",
+              left: "50%"
+            },
+            400
+          );
+          $(".content").animate(
+            {
+              opacity: "0"
+            },
+            700
+          );
+          showBubbles();
+          isTop = false;
+        } else {
+          if (menuIsOpen === false) {
+            showBubbles();
+          } else {
+            hideBubbles();
+          }
+        }
+      });
+
+      function showBubbles() {
+        one.css("opacity", "0.0");
+        two.css("opacity", "0.0");
+        three.css("opacity", "0.0");
+        four.css("opacity", "0.0");
+        five.css("opacity", "0.0");
+        six.css("opacity", "0.0");
+        seven.css("opacity", "0.0");
+        eight.css("opacity", "0.0");
+        menuIcon.addClass("is-active");
+        one.addClass("shadow");
+        two.addClass("shadow");
+        three.addClass("shadow");
+        four.addClass("shadow");
+        five.addClass("shadow");
+        six.addClass("shadow");
+        seven.addClass("shadow");
+        eight.addClass("shadow");
+        // Returns a random integer from 200 to 700:
+        //Math.floor(Math.random() * 700) + 200;
+        setTimeout(
+          function () {
+            one.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            two.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            three.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            four.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            five.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            six.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            seven.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            eight.addClass("blob");
+          },
+          Math.floor(Math.random() * 700) + 100,
+          function () {
+            // Animation complete.
+          }
+        );
+        setTimeout(
+          function () {
+            one.removeClass("blob");
+            two.removeClass("blob");
+            three.removeClass("blob");
+            four.removeClass("blob");
+            five.removeClass("blob");
+            six.removeClass("blob");
+            seven.removeClass("blob");
+            eight.removeClass("blob");
+          },
+          2000,
+          function () {
+            // Animation complete.
+          }
+        );
+
+        one.animate(
+          {
+            top: "-65px",
+            left: "-65px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        two.animate(
+          {
+            top: "-65px",
+            left: "37px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        three.animate(
+          {
+            top: "-65px",
+            left: "140px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        four.animate(
+          {
+            top: "37px",
+            left: "-65px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        five.animate(
+          {
+            top: "37px",
+            left: "140px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        six.animate(
+          {
+            top: "140px",
+            left: "-65px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        seven.animate(
+          {
+            top: "140px",
+            left: "37px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        eight.animate(
+          {
+            top: "140px",
+            left: "140px",
+            opacity: "1"
+          },
+          Math.floor(Math.random() * 500) + 400
+        );
+
+        // grayout
+        grayedout = "no";
+        if (grayedout == "yes") {
+          // disable buttons
+          one.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          two.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          three.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          four.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          five.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          six.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          seven.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+          eight.animate(
+            {
+              opacity: "0.2"
+            },
+            800
+          );
+        }
+
+        menuIsOpen = true;
+        // hide pressbutton
+        $("#pressbutton").html("");
+      }
+
+      function hideBubbles() {
+        // add 500ms delay to change X to hamburger
+        setTimeout(function () {
+          menuIcon.removeClass("is-active");
+          one.removeClass("shadow");
+          two.removeClass("shadow");
+          three.removeClass("shadow");
+          four.removeClass("shadow");
+          five.removeClass("shadow");
+          six.removeClass("shadow");
+          seven.removeClass("shadow");
+          eight.removeClass("shadow");
+        }, 500);
+        setTimeout(function () {
+          // move x icon back to hamburger
+          $("#nav").animate(
+            {
+              top: "9vh", //80px',
+              left: "9vh" //80px'
+            },
+            400
+          );
+          // fade background title
+          $(".content").animate(
+            {
+              opacity: "1"
+            },
+            1500
+          );
+        }, 400);
+        // move menu items
+        one.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        one.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        two.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        two.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        three.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        three.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        four.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        four.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        five.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        five.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        seven.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        six.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        six.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        seven.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        seven.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+        eight.animate(
+          {
+            top: "50%"
+          },
+          200
+        );
+        eight.animate(
+          {
+            left: "50%"
+          },
+          200
+        );
+
+        menuIsOpen = false;
+        isTop = true;
+      }
+      $(".bubble").click(function () {
+        menuIcon.removeClass("is-active");
+        hideBubbles();
+        setTimeout(function () {
+          $("#nav").animate(
+            {
+              top: "9vh",
+              left: "9vh"
+            },
+            900
+          );
+        }, 500);
+        isTop = true;
+      });
+
+      /* make menu choices */
+      function doOne() {
+        // put menu back then move to hcp page
+        setTimeout(function () {
+          window.location.assign("monday.html");
+        }, 800);
+      }
+
+      function doTwo() {
+        // if compday then allow input, else disable
+        if (grayedout == "no") {
+          setTimeout(function () {
+            // put menu back then move to score entry page
+            window.location.assign("tuesday.html");
+          }, 800);
+        } else {
+          noCompMsg();
+        }
+      }
+
+      function doThree() {
+        // put menu back then move to twos page
+        setTimeout(function () {
+          window.location.assign("wednesday.html");
+        }, 800);
+      }
+
+      function doFour() {
+        // put menu back then move to results page
+        setTimeout(function () {
+          window.location.assign("thursday.html");
+        }, 800);
+      }
+
+      function doFive() {
+        // if compday then allow display, else disable
+        if (grayedout == "no") {
+          // put menu back then move to results page
+          setTimeout(function () {
+            window.location.assign("friday.html");
+          }, 800);
+        } else {
+          noCompMsg();
+        }
+      }
+
+      function doSix() {
+        // if compday then allow input, else disable
+        if (grayedout == "no") {
+          // put menu back then move to results page
+          setTimeout(function () {
+            window.location.assign("final.html");
+          }, 800);
+        } else {
+          noCompMsg();
+        }
+      }
+
+      function doSeven() {
+        // put menu back then move to results page
+        setTimeout(function () {
+          window.location.assign("info.html");
+        }, 800);
+      }
+
+      function doEight() {
+        // put menu back then move to results page
+        setTimeout(function () {
+          window.location.assign("blindgolfer.html");
+        }, 800);
+      }
+
+      //====================================
+      // end of menu code
+      //====================================
+
+      //====================================
+      // runs on start or refresh
+      //====================================
+
+      getNextComps();
+
+      //=====================================
+      // functions
+      //=====================================
+      // get list of next comps
+      function getNextComps() {
+        dd = new Date(); /* today */
+        dlist1 = "Saturday - 13:45 Nobilis";
+        dlist2 = "Sunday - 10:20 Montgomerie";
+        dlist3 = "Monday - 13:57 Carya";
+        dlist4 = "Tuesday - 10:20 Montgomerie";
+
+        var dd1 = new Date("2026-10-12"); // start date
+        var dd2 = new Date("2026-10-16"); // end date
+
+        if (dd > dd1 && dd < dd2) {
+          if (dd.getDay() == 1) {
+            dlist1 = '<a id="cyantxt">Today - 13:45 Nobilis</a>';
+          }
+
+          if (dd.getDay() == 2) {
+            dlist2 = '<a id="cyantxt">Today - 10:20 Montgomerie</a>';
+          }
+
+          if (dd.getDay() == 3) {
+            dlist3 = '<a id="cyantxt">Today - 13:57 Carya</a>';
+          }
+
+          if (dd.getDay() == 4) {
+            dlist4 = '<a id="cyantxt">Today - 10:20 Montgomerie</a>';
+          }
+}
+         document.querySelector("body").classList.remove("photo");
+
+        dlist = dlist1 + "<br>" + dlist2 + "<br>" + dlist3 + "<br>" + dlist4;
+
+        document.getElementById("xdcomp1").innerHTML = dlist;
+
+        // show menu
+        document.getElementById("nav").style.display = "block";
+
+  }
+
+      // resize flagicon
+      function enlarge() {
+        document.getElementById("img").classList.toggle("half");
+      }
+
+      function showPhoto() {
+        document.body.classList.add("photo");
+      }
+      showPhoto();
+    </script>
+  </body>
+</html>
