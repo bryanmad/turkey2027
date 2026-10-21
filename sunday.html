@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+        <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+        <title>turkey2027</title>
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 100vw;
+                height: 100lvh;
+            }
+
+            body {
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3lvh;
+                background: navy;
+            }
+
+            #mainpage {
+                background: navy;
+                width: 92.5%;
+                overflow: hidden;
+                max-width: 100%;
+                float: left;
+                text-align: left;
+                color: white;
+                height: auto;
+            }
+
+            #mainpageleft {
+                writing-mode: vertical-lr;
+                float: left;
+                color: dodgerBlue;
+                width: 7.5%;
+                padding-left: 1.5vw;
+                padding-top: 5lvh;
+                //fade-in
+                opacity: 1;
+                animation-name: fade-in;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+                animation-duration: 2s;
+            }
+
+            tr {
+                text-align: center;
+            }
+
+            td {
+                width: calc(100vw / 6);
+            }
+
+            .spacer1lvh {
+                display: flex;
+                padding: 1lvh;
+            }
+
+            /* for each day */
+            #createleaderboarditems {
+                text-align: center;
+                color: white;
+                font-size: 4lvh;
+                height: auto;
+                display: block;
+            }
+
+            .team {
+                width: 90%;
+                height: height: calc(83lvh / 16); //calc((100 - 17)/16lvh); //5lvh;
+                margin-left: 5%;
+                margin-top: 1lvh;
+                margin-bottom: 1lvh;
+                background: rgba(105, 105, 105, 0.8);
+                //box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                /* how fast ? is */
+                transition-duration: 200ms;
+                border-radius: 5px; //10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                //background-clip: padding-box;
+                margin-left: 100%;
+                box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            /* how fast it slides in */
+            .animate {
+                transform: translate3d(-105%, 0, 0);
+                -webkit-transition: transform 0.5s ease;
+            }
+
+            .teamhcp {
+                width: 90%;
+                height: calc((100 - 17)/16lvh); //5lvh;
+                margin-left: 5%;
+                margin-top: 1%;
+                margin-bottom: 1%;
+                padding-left: 5vw;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                /* how fast ? is */
+                transition-duration: 500ms;
+                border-radius: 5px; //10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .name {
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3lvh;
+                font-weight: 400;
+            }
+
+            .namehcp {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3lvh;
+                font-weight: 400;
+            }
+
+            .scores {
+                width: 40%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5lvh;
+            }
+
+            .tees {
+                width: 35%;
+                font-size: 2lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5lvh;
+            }
+
+            #tees0, #tees1, #tees2, #tees3,
+            #hcps0, #hcps1, #hcps2, #hcps3,
+            #namehcp0, #namehcp1, #namehcp2, #namehcp3 {
+                color: white;
+            }
+
+            #tees4, #tees5, #tees6, #tees7,
+            #hcps4, #hcps5, #hcps6, #hcps7,
+            #namehcp4, #namehcp5, #namehcp6, #namehcp7 {
+                color: cyan;
+            }
+
+            #tees8, #tees9, #tees10, #tees11,
+            #hcps8, #hcps9, #hcps10, #hcps11,
+            #namehcp8, #namehcp9, #namehcp10, #namehcp11 {
+                color: yellow;
+            }
+
+            #tees12, #tees13, #tees14, #tees15,
+            #hcps12, #hcps13, #hcps14, #hcps15,
+            #namehcp12, #namehcp13, #namehcp14, #namehcp15 {
+                color: limeGreen;
+            }
+
+            .position {
+                width: 20%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcps {
+                width: 12%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcpsadj {
+                padding-left: 6lvh;
+                width: auto;
+                font-size: 2.5lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            #footerstats {
+                position: absolute;
+                bottom: 200px;
+                width: 100%;
+                font-size: 2.5lvh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .birdgif, .birdgifnumber {
+                width: 10%;
+                visibility: hidden;
+            }
+
+            .numbird {
+                width: 10%;
+                visibility: hidden;
+                text-align: center;
+                color: cyan;
+                font-size: 2lvh;
+                font-style: italic;
+            }
+
+            .birdimg {
+                height: 3.3lvh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+
+            #statsinfo {
+                width: 300px;
+                height: 300px;
+                border: 1px solid cyan;
+                display: flex;
+            }
+
+            #toptr {
+                color: cyan;
+            }
+
+            #statspanel {
+                display: none;
+                position: fixed;
+                bottom: 25lvh;
+                color: white;
+                font-size: 4vw;
+                width: 96%;
+                margin-left: 2%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                box-shadow: 0 3px 5px black;
+                align-items: center;
+                border-radius: 10px;
+                //border: 1px solid silver;
+                animation-name: expandfrommiddle;
+                animation-duration: 0.7s;
+                animation-timing-function: ease-out;
+            }
+
+            @keyframes expandfrommiddle {
+                from {
+                        scale: 0.1;
+                        opacity: 0%;
+                    }
+                to {
+                        scale: 1;
+                        opacity: 100%;
+                    }
+            }
+
+            @keyframes fade-in {
+                from {
+                        opacity: 0%;
+                        scale: 0.2;
+                    }
+                to {
+                        opacity: 100%;
+                        scale: 1;
+                    }
+            }
+
+            @keyframes slide-in {
+                from {
+                        translate: 0 -100lvh;
+                }
+                to {
+                        translate: 0 0;
+                }
+            }
+
+            /* DivTable.com */
+            tr {
+                color: white;
+                background: black;
+                font-size: 2lvh;
+            }
+
+            .static {
+                color: cyan;
+            }
+
+            .bg {
+                font-size: 3lvh;
+            }
+
+            #panel {
+                display: none;
+                position: fixed;
+                top: 0;
+                text-align: center;
+                justify-content: center;
+                height: 100%;
+                width: 100%;
+                left: 0;
+                background: black;
+                color: white;
+                font-family: arial;
+                font-size: 7lvh;
+                border-radius: 5px;
+                padding: 5lvh;
+                padding-top: 20lvh;
+            }
+
+            .container {
+                width: 100vw;
+                height: 40lvh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: navy;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                align-content: center;
+            }
+
+            .flex {
+                min-height: 60pt;
+            }
+
+            @keyframes loading {
+                0% {
+                    width: 50pt;
+                    height: 50pt;
+                    margin-top: 0;
+                }
+                25% {
+                    height: 4pt;
+                    margin-top: 23pt;
+                }
+                50% {
+                    width: 4pt;
+                }
+                75% {
+                    width: 50pt;
+                }
+                100% {
+                    width: 50pt;
+                    height: 50pt;
+                    margin-top: 0;
+                }
+            }
+
+            .loader {
+                    width: 50pt;
+                    height: 50pt;
+                    border-radius: 100%;
+                    border: cyan 4pt solid;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background-color: transparent;
+                    animation: loading 1s infinite;
+            }
+
+            .load-text {
+                    padding-top: 15px;
+                    text-align: center;
+                    font-size: 3lvh;
+                    color: cyan;
+            }
+
+            table {
+                border-collapse: collapse;
+                background: black;
+            }
+
+            #back {
+                position: absolute;
+                left: 5vw;
+                top: 5vw;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainpageleft"></div>
+        <div id="mainpage">
+            <div id="createleaderboarditems">
+                <!-- this is overwritten on start -->
+                <div class="container">
+                    <div class="flex">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="load-text">Loading...</div>
+                </div>
+                <!-- end of this is overwritten on start -->
+            </div>
+        </div>
+        <div style="margin-top: 8px"></div>
+        <!-- popup stats panel -->
+        <div id="statspanel">
+            <img id="back" src="close.png" height="50" width="50" onclick="hideStatsPanel()" />
+            <!-- DivTable.com -->
+            <table>
+                <tbody>
+                    <tr class="static bg">
+                        <td colspan="11" id="theader"></td>
+                    </tr>
+                    <tr class="static">
+                        <td>hole</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>front</td>
+                    </tr>
+                    <tr class="static">
+                        <td>si</td>
+                        <td id="si1">1</td>
+                        <td id="si2">2</td>
+                        <td id="si3">3</td>
+                        <td id="si4">4</td>
+                        <td id="si5">5</td>
+                        <td id="si6">6</td>
+                        <td id="si7">7</td>
+                        <td id="si8">8</td>
+                        <td id="si9">9</td>
+                        <td></td>
+                    </tr>
+                    <tr class="static">
+                        <td>par</td>
+                        <td id="par1">1</td>
+                        <td id="par2">2</td>
+                        <td id="par3">3</td>
+                        <td id="par4">4</td>
+                        <td id="par5">5</td>
+                        <td id="par6">6</td>
+                        <td id="par7">7</td>
+                        <td id="par8">8</td>
+                        <td id="par9">9</td>
+                        <td id="parfront">123</td>
+                    </tr>
+                    <tr>
+                        <td>strokes</td>
+                        <td id="st1">1</td>
+                        <td id="st2">2</td>
+                        <td id="st3">3</td>
+                        <td id="st4">4</td>
+                        <td id="st5">5</td>
+                        <td id="st6">6</td>
+                        <td id="st7">7</td>
+                        <td id="st8">8</td>
+                        <td id="st9">9</td>
+                        <td id="sfront">123</td>
+                    </tr>
+                    <tr>
+                        <td>points</td>
+                        <td id="p1">1</td>
+                        <td id="p2">2</td>
+                        <td id="p3">3</td>
+                        <td id="p4">4</td>
+                        <td id="p5">5</td>
+                        <td id="p6">6</td>
+                        <td id="p7">7</td>
+                        <td id="p8">8</td>
+                        <td id="p9">9</td>
+                        <td id="pfront">123</td>
+                    </tr>
+                    <tr>
+                        <td colspan="11">&nbsp;</td>
+                    </tr>
+                    <tr class="static">
+                        <td>hole</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>back</td>
+                    </tr>
+                    <tr class="static">
+                        <td>si</td>
+                        <td id="si10">1</td>
+                        <td id="si11">2</td>
+                        <td id="si12">3</td>
+                        <td id="si13">4</td>
+                        <td id="si14">5</td>
+                        <td id="si15">6</td>
+                        <td id="si16">7</td>
+                        <td id="si17">8</td>
+                        <td id="si18">9</td>
+                        <td></td>
+                    </tr>
+                    <tr class="static">
+                        <td>par</td>
+                        <td id="par10">1</td>
+                        <td id="par11">2</td>
+                        <td id="par12">3</td>
+                        <td id="par13">4</td>
+                        <td id="par14">5</td>
+                        <td id="par15">6</td>
+                        <td id="par16">7</td>
+                        <td id="par17">8</td>
+                        <td id="par18">9</td>
+                        <td id="parback">123</td>
+                    </tr>
+                    <tr>
+                        <td>strokes</td>
+                        <td id="st10">1</td>
+                        <td id="st11">2</td>
+                        <td id="st12">3</td>
+                        <td id="st13">4</td>
+                        <td id="st14">5</td>
+                        <td id="st15">6</td>
+                        <td id="st16">7</td>
+                        <td id="st17">8</td>
+                        <td id="st18">9</td>
+                        <td id="sback">123</td>
+                    </tr>
+                    <tr>
+                        <td>points</td>
+                        <td id="p10">1</td>
+                        <td id="p11">2</td>
+                        <td id="p12">3</td>
+                        <td id="p13">4</td>
+                        <td id="p14">5</td>
+                        <td id="p15">6</td>
+                        <td id="p16">7</td>
+                        <td id="p17">8</td>
+                        <td id="p18">9</td>
+                        <td id="pback">123</td>
+                    </tr>
+                    <tr class="static bg">
+                        <td colspan="11" id="statscomment"><br /><br /><br /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- spacer -->
+        <div class="spacer1lvh"></div>
+
+        <!-- popup panel -->
+        <div id="panel" onclick="closePanel()">The draw for today has not been done.</div>
+
+        <script>
+            //=================================================================================
+            // this runs on startup or reload
+            //
+            //=================================================================================
+            // prevent default img menu of options
+            //document.addEventListener("contextmenu", (event) => {
+            //    event.preventDefault();
+            //});
+
+            // declare global variables
+            const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            var data;
+            var getDataRetryCount = 0;
+            // set up courses with details for calculations etc.
+            // array ["hole num",par,si]
+            // day 1 - calanova
+            // day 2 - la cala america
+            // day 3 - mijas los lagos
+            // day 4 - la cala europa
+            // day 5 - la cala asia
+
+            // Calanova
+            // Monday
+            // hole, par, si
+            arrCourse = [
+                [0, 0, 0],
+                [1, 5, 9],
+                [2, 4, 5],
+                [3, 4, 13],
+                [4, 4, 11],
+                [5, 4, 1],
+                [6, 3, 7],
+                [7, 4, 15],
+                [8, 3, 17],
+                [9, 5, 3],
+                [10, 5, 6],
+                [11, 4, 4],
+                [12, 4, 18],
+                [13, 3, 12],
+                [14, 5, 2],
+                [15, 4, 8],
+                [16, 4, 10],
+                [17, 3, 16],
+                [18, 4, 14]
+            ];
+
+            //===========================
+            // this code runs at startup
+            //===========================
+            getData();
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            //=============================================================
+            // async function getData()
+            // - gets results data
+            //=============================================================
+            async function getData() {
+                var url = "https://opensheet.elk.sh/1tjV53jXBchvPRH738JktJglq84hcEB0UpTm4VXTrv20/resultsDay3";
+                try {
+                    console.log("timeout delay = " + (getDataRetryCount * 1000 + 2000));
+                    const dataStream = await fetch(url, {
+                        signal: AbortSignal.timeout(getDataRetryCount * 1000 + 2000)
+                    });
+                    if (!dataStream.ok) {
+                        throw new Error(`Response status: ${dataStream.status}`);
+                    } else {
+                        data = await dataStream.json();
+                        $("#pagetwo").fadeIn(500);
+                        document.getElementById("panel").style.display = "none";
+                        if (data[0].players.length > 0) {
+                            //console.log("using useDataResults()");
+                            document.getElementById("panel").style.display = "none";
+                            document.getElementById("mainpageleft").innerText = "Sunday Leaderboard";
+                            useDataResults();
+                        } else {
+                            document.getElementById("mainpageleft").innerText = "Sunday Tee slots & hcps";
+                            useDataHcp();
+                        }
+                    }
+                } catch (err) {
+                    console.error(err.message);
+                    if (err.name === "TimeoutError") {
+                        // This exception is from the abort signal
+                        console.error("Timeout: server too busy");
+                    } else if (err.name === "AbortError") {
+                        // This exception is from the fetch itself
+                        console.error("Fetch aborted by user action (browser stop button, closing tab, etc.");
+                    } else if (err.name === "TypeError") {
+                        console.error("AbortSignal.timeout() method is not supported");
+                    } else {
+                        // A network error, or some other problem.
+                        console.error(`Error: type: ${err.name}, message: ${err.message}`);
+                    }
+                    // retry
+                    getDataRetryCount++;
+                    if (getDataRetryCount < 5) {
+                        document.getElementsByClassName("load-text")[0].innerText =
+                            "retrying " + getDataRetryCount + "/5";
+                        sleep(getDataRetryCount * 1000 + 2000);
+                        getData();
+                    }
+                    if (getDataRetryCount == 5) {
+                        document.getElementsByClassName("load-text")[0].innerText = "Please try again later.";
+                    }
+                }
+            }
+
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            function useDataHcp() {
+                let container = document.getElementById("createleaderboarditems");
+                // empty container
+                container.innerHTML = "";
+
+                // build screen
+
+                data.forEach((el, i) => {
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "teamhcp";
+
+                    let name = document.createElement("span");
+                    name.id = "namehcp" + i;
+                    name.className = "namehcp";
+                    name.innerHTML = el.hcpplayers;
+
+                    let hcps = document.createElement("span");
+                    hcps.id = "hcps" + i;
+                    hcps.className = "hcps";
+
+                    let tees = document.createElement("span");
+                    tees.id = "tees" + i;
+                    tees.className = "tees";
+                    tees.innerHTML = el.tees;
+
+                    box.appendChild(name);
+                    box.appendChild(hcps);
+                    box.appendChild(tees);
+
+                    container.appendChild(box);
+                    // fade the initial view
+                    box.style.opacity = 0.3;
+                });
+
+                var k = 0;
+
+                // do proper display
+                data.forEach((el, i) => {
+                    k++;
+                    setTimeout(function () {
+                        //console.log("run ... 1", el.hcpplayers, el.hcps);
+                        if (el.hcpplayers !== "") {
+                            bodyUpdateHcps(el.hcpplayers, el.hcps, i);
+                        }
+                    }, k * 300);
+                });
+
+                document.getElementById("box0").style.borderColor = "white";
+                document.getElementById("box1").style.borderColor = "white";
+                document.getElementById("box2").style.borderColor = "white";
+                document.getElementById("box3").style.borderColor = "white";
+
+                document.getElementById("box4").style.borderColor = "cyan";
+                document.getElementById("box5").style.borderColor = "cyan";
+                document.getElementById("box6").style.borderColor = "cyan";
+                document.getElementById("box7").style.borderColor = "cyan";
+
+                document.getElementById("box8").style.borderColor = "yellow";
+                document.getElementById("box9").style.borderColor = "yellow";
+                document.getElementById("box10").style.borderColor = "yellow";
+                document.getElementById("box11").style.borderColor = "yellow";
+
+                document.getElementById("box12").style.borderColor = "limeGreen";
+                document.getElementById("box13").style.borderColor = "limeGreen";
+                document.getElementById("box14").style.borderColor = "limeGreen";
+                document.getElementById("box15").style.borderColor = "limeGreen";
+
+                // if the updated column is today then display the hcps etc
+                // if the updated column is not today "blank" the hcp screen
+                console.log("updated = " + data[0].updated);
+                if (!(data[0].updated == "Sunday")) {
+                    document.getElementById("panel").style.display = "block";
+                }
+            }
+
+            function useDataResults() {
+                let container = document.getElementById("createleaderboarditems");
+                // empty container
+                container.innerHTML = "";
+                //console.log(data);
+                data.forEach((el, i) => {
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "team";
+                    box.setAttribute("onclick", "showStats(this.id);return false;");
+
+                    let name = document.createElement("span");
+                    name.id = "name" + i;
+                    name.className = "name";
+                    name.innerHTML = el.players;
+
+                    let scores = document.createElement("span");
+                    scores.id = "scores" + i;
+                    scores.className = "scores";
+
+                    let position = document.createElement("span");
+                    position.id = "position" + i;
+                    position.className = "position";
+
+                    if (el.players.length > 0) {
+                        position.innerHTML = i;
+                    }
+
+                    let birdgif = document.createElement("span");
+                    birdgif.id = "birdgif" + i;
+                    birdgif.className = "birdgif";
+
+                    let birdgifnumber = document.createElement("span");
+                    birdgifnumber.id = "birdgifnumber" + i;
+                    birdgifnumber.className = "birdgifnumber";
+
+                    let birdimg = document.createElement("img");
+                    birdimg.id = "birdimg" + i;
+                    birdimg.className = "birdimg";
+                    birdimg.src = "bird.gif";
+
+                    let birdcount = document.createElement("img");
+                    birdcount.id = "birdcount" + i;
+                    birdcount.className = "birdimg";
+                    //birdcount.src = "bird.gif";
+
+                    birdgif.appendChild(birdimg);
+                    birdgifnumber.appendChild(birdcount);
+
+                    box.appendChild(position);
+                    box.appendChild(name);
+
+                    box.appendChild(birdgif);
+                    box.appendChild(birdgifnumber);
+
+                    box.appendChild(scores);
+
+                    container.appendChild(box);
+                    // fade the initial view
+                    container.style.opacity = 0.3;
+                });
+
+                var k = 0;
+
+                // do proper display
+
+                document.getElementById("createleaderboarditems").style.opacity = 1;
+
+                data.forEach((el, i) => {
+                    k++;
+                    setTimeout(function () {
+                        //if (el.players !== "") {
+                        bodyUpdate(el.players, el.playerpoints, i);
+                        //}
+                    }, k * 300);
+                });
+            }
+
+            function bodyUpdateHcps(nom, hcps, i) {
+                // find the correct data
+                data.find((team) => team.players === nom);
+                // find the correct place for the data
+                let AllTeams = Array.from(document.querySelectorAll(".teamhcp"));
+                let element = AllTeams[i];
+                let elementName = element.querySelector(".namehcp");
+                let elementHcp = element.querySelector(".hcps");
+                //console.log(elementName.innerHTML, nom);
+                if (elementName.innerHTML == nom) {
+                    //console.log("yes " + elementName.innerHTML, nom);
+                    elementName.innerHTML = nom;
+                    elementHcp.innerHTML = hcps;
+                    element.style.opacity = 1;
+                }
+            }
+
+            function bodyUpdate(nom, points, i) {
+                let pos = i + 1;
+                //temp
+
+                data.find((team) => team.players === nom);
+                // now sort out positions for same scores
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+                // cope with first position
+                if (i < 1) {
+                    let previousElement = AllTeams[i];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    elementPos.innerHTML = pos;
+                } else {
+                    let previousElement = AllTeams[i - 1];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    // if this score is the same as previous - same position
+                    if (previousElementScore.innerHTML == points) {
+                        if (points > 0) {
+                            elementPos.innerHTML = previousElementPos.innerHTML;
+                        }
+                    } else {
+                        if (points > 0) {
+                            elementPos.innerHTML = pos;
+                        }
+                    }
+                }
+                // end of cope with first position
+                //
+
+                // sort out the birdies
+                let elementBirdGif = element.querySelector(".birdgif");
+                let elementBirdGifNumber = element.querySelector(".birdgifnumber");
+                if (elementName.innerHTML == nom) {
+                    elementScore.innerHTML = points;
+                }
+                var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
+                if (birdnum > 0) {
+                    document.getElementById("birdgif" + i).style.visibility = "visible";
+                    document.getElementById("birdgifnumber" + i).className = "numbird";
+                    document.getElementById("birdgifnumber" + i).innerText = birdnum;
+                    document.getElementById("birdgifnumber" + i).style.visibility = "visible";
+                }
+
+                // fade in results
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+                elementBirdGif.style.opacity = 0;
+                elementBirdGifNumber.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+                elementBirdGif.style.transition = "opacity 3s";
+                elementBirdGifNumber.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+                elementBirdGif.style.opacity = 1;
+                elementBirdGifNumber.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            function showStats(id) {
+                //console.log("showStats(id) = " + id);
+
+                if (document.getElementById(id).hasChildNodes()) {
+                    let childtxt = document.getElementById(id).childNodes[1].innerText;
+                    //console.log("called by " + childtxt);
+                    if (childtxt.length > 0) {
+                        document.getElementById("statspanel").style.display = "flex";
+                        document.getElementById("theader").innerText = "\n" + childtxt + "\n\n";
+
+                        // box0 is position 1 etc.
+                        statspos = id.replace("box", "");
+
+                        document.getElementById("st1").innerText = data[statspos].h1;
+                        document.getElementById("st2").innerText = data[statspos].h2;
+                        document.getElementById("st3").innerText = data[statspos].h3;
+                        document.getElementById("st4").innerText = data[statspos].h4;
+                        document.getElementById("st5").innerText = data[statspos].h5;
+                        document.getElementById("st6").innerText = data[statspos].h6;
+                        document.getElementById("st7").innerText = data[statspos].h7;
+                        document.getElementById("st8").innerText = data[statspos].h8;
+                        document.getElementById("st9").innerText = data[statspos].h9;
+                        document.getElementById("st10").innerText = data[statspos].h10;
+                        document.getElementById("st11").innerText = data[statspos].h11;
+                        document.getElementById("st12").innerText = data[statspos].h12;
+                        document.getElementById("st13").innerText = data[statspos].h13;
+                        document.getElementById("st14").innerText = data[statspos].h14;
+                        document.getElementById("st15").innerText = data[statspos].h15;
+                        document.getElementById("st16").innerText = data[statspos].h16;
+                        document.getElementById("st17").innerText = data[statspos].h17;
+                        document.getElementById("st18").innerText = data[statspos].h18;
+
+                        document.getElementById("p1").innerText = data[statspos].p1;
+                        document.getElementById("p2").innerText = data[statspos].p2;
+                        document.getElementById("p3").innerText = data[statspos].p3;
+                        document.getElementById("p4").innerText = data[statspos].p4;
+                        document.getElementById("p5").innerText = data[statspos].p5;
+                        document.getElementById("p6").innerText = data[statspos].p6;
+                        document.getElementById("p7").innerText = data[statspos].p7;
+                        document.getElementById("p8").innerText = data[statspos].p8;
+                        document.getElementById("p9").innerText = data[statspos].p9;
+                        document.getElementById("p10").innerText = data[statspos].p10;
+                        document.getElementById("p11").innerText = data[statspos].p11;
+                        document.getElementById("p12").innerText = data[statspos].p12;
+                        document.getElementById("p13").innerText = data[statspos].p13;
+                        document.getElementById("p14").innerText = data[statspos].p14;
+                        document.getElementById("p15").innerText = data[statspos].p15;
+                        document.getElementById("p16").innerText = data[statspos].p16;
+                        document.getElementById("p17").innerText = data[statspos].p17;
+                        document.getElementById("p18").innerText = data[statspos].p18;
+
+                        var sfront = 0;
+                        var pfront = 0;
+                        var sifront = 0;
+                        var parfront = 0;
+                        var parfront9 = 0;
+
+                        for (i = 1; i <= 9; i++) {
+                            sfront += +document.getElementById("st" + i).innerText;
+                            pfront += +document.getElementById("p" + i).innerText;
+                            document.getElementById("si" + i).innerText = arrCourse[i][2];
+                            document.getElementById("par" + i).innerText = arrCourse[i][1];
+
+                            parfront9 += arrCourse[i][1];
+                        }
+
+                        var sback = 0;
+                        var pback = 0;
+                        var siback = 0;
+                        var parback = 0;
+                        var parback9 = 0;
+
+                        for (i = 10; i <= 18; i++) {
+                            sback += +document.getElementById("st" + i).innerText;
+                            pback += +document.getElementById("p" + i).innerText;
+                            document.getElementById("si" + i).innerText = arrCourse[i][2];
+                            document.getElementById("par" + i).innerText = arrCourse[i][1];
+
+                            parback9 += +arrCourse[i][1];
+                        }
+                        var stotal = sfront + sback;
+                        var ptotal = pfront + pback;
+
+                        document.getElementById("statscomment").innerHTML =
+                            "<br>" + stotal + " strokes, " + ptotal + " points." + "<br><br>";
+
+                        document.getElementById("sfront").innerText = sfront;
+                        document.getElementById("sback").innerText = sback;
+                        document.getElementById("pfront").innerText = pfront;
+                        document.getElementById("pback").innerText = pback;
+                        document.getElementById("parfront").innerText = parfront9;
+                        document.getElementById("parback").innerText = parback9;
+                    }
+                }
+            }
+
+            function hideStatsPanel() {
+                document.getElementById("statspanel").style.display = "none";
+            }
+        </script>
+    </body>
+</html>
