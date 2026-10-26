@@ -123,6 +123,13 @@ line-height: 5vh;
             [[6, 9, 11, 0], [4, 7, 10, 1], [3, 5, 8, 2]]
         ];
 
+        const thisday = [
+        "Saturday",
+        "Sunday",
+        "Monday",
+        "Tuesday"
+        ];
+
         let selectedElement = null;
         let selectedCoord = null; // Stores { roundIndex, groupIndex, playerIndex }
 
@@ -152,7 +159,7 @@ line-height: 5vh;
                 const roundDiv = document.createElement('div');
                 roundDiv.className = 'round-container';
                 
-                let htmlContent = `<h2>Round ${roundIdx + 1}</h2>`;
+                let htmlContent = `<h2>Round ${roundIdx + 1} ${thisday[roundIdx]}</h2>`;
                 htmlContent += `
                     <table>
                         <thead>
