@@ -79,7 +79,11 @@
 
             .team {
                 width: 90%;
-                height: height: calc(83lvh / 16); //calc((100 - 17)/16lvh); //5lvh;
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+                //height: calc(79lvh / 16); /* 16 players*/
+                height: calc(79lvh / 12); /* 12 players*/
                 margin-left: 5%;
                 margin-top: 1lvh;
                 margin-bottom: 1lvh;
@@ -640,7 +644,7 @@
             // - gets results data
             //=============================================================
             async function getData() {
-                var url = "https://opensheet.elk.sh/1tjV53jXBchvPRH738JktJglq84hcEB0UpTm4VXTrv20/resultsDay3";
+                var url = "https://opensheet.elk.sh/1h8KFNCYALzSixGZDgPRAweIrsXxDi6HH_ZBOj-tx58A/resultsDay1";
                 try {
                     console.log("timeout delay = " + (getDataRetryCount * 1000 + 2000));
                     const dataStream = await fetch(url, {
@@ -653,7 +657,18 @@
                         $("#pagetwo").fadeIn(500);
                         document.getElementById("panel").style.display = "none";
                         if (data[0].players.length > 0) {
-                            //console.log("using useDataResults()");
+                            //console.log("Data Length = " + data.length);
+                            //console.log(data);
+
+                            // don't need blank players
+                            // and sorts outdifference between 12 and 16 players
+                            data = data.filter(function (el) {
+                            return el.players !== "";
+                            });
+
+                            //console.log("Data Length = " + data.length);
+                            //console.log(data);
+
                             document.getElementById("panel").style.display = "none";
                             document.getElementById("mainpageleft").innerText = "Saturday Leaderboard";
                             useDataResults();
@@ -757,10 +772,14 @@
                 document.getElementById("box10").style.borderColor = "yellow";
                 document.getElementById("box11").style.borderColor = "yellow";
 
-                document.getElementById("box12").style.borderColor = "limeGreen";
-                document.getElementById("box13").style.borderColor = "limeGreen";
-                document.getElementById("box14").style.borderColor = "limeGreen";
-                document.getElementById("box15").style.borderColor = "limeGreen";
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+
+                //document.getElementById("box12").style.borderColor = "limeGreen";
+                //document.getElementById("box13").style.borderColor = "limeGreen";
+                //document.getElementById("box14").style.borderColor = "limeGreen";
+                //document.getElementById("box15").style.borderColor = "limeGreen";
 
                 // if the updated column is today then display the hcps etc
                 // if the updated column is not today "blank" the hcp screen
@@ -888,13 +907,13 @@
                     let previousElementScore = previousElement.querySelector(".scores");
                     // if this score is the same as previous - same position
                     if (previousElementScore.innerHTML == points) {
-                        if (points > 0) {
+                        //if (points > 0) {
                             elementPos.innerHTML = previousElementPos.innerHTML;
-                        }
+                        //}
                     } else {
-                        if (points > 0) {
+                        //if (points > 0) {
                             elementPos.innerHTML = pos;
-                        }
+                        //}
                     }
                 }
                 // end of cope with first position
