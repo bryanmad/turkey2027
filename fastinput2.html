@@ -1,0 +1,2133 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <title>turkey2027</title>
+        <meta content="Bryan M" name="author" />
+        <meta name="theme-color" content="indigo" />
+        <meta name="robots" content="noindex" />
+        <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <style>
+
+                   	/* icon color #bef081 */
+
+                   	* {
+                   		margin: 0;
+                   		padding: 0;
+                   		box-sizing: border-box;
+                   	}
+
+                   	html {
+                   		//height: 100vh;
+                   		width: 100vw;
+                   	}
+
+                   	body {
+                        overflow: hidden;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		font-size: 3vh;
+                   		background: black;
+                   		height: 100%;
+                   		width: 100%;
+                   	}
+                   	/* dropdown */
+
+                   	#dropbtn {
+                   		color: white;
+                   		background: black;
+                   		height: 100%;
+                     width:100%;
+                   		display: flex;
+                   		justify-content: center;
+                   		align-items: center;
+                   		border-radius: 10px;
+                     border: 5px solid gray;
+                   	}
+
+                    #iconpageone, #iconpagetwo, #iconpagethree {
+                   		color: white;
+                   		background: dodgerBlue;
+                   		height: 100%;
+                   		display: flex;
+                   		justify-content: center;
+                   		align-items: center;
+                   		//border: 1px solid Gray;
+                     //border-radius: 10px;
+                     width:20%;
+                     margin-left: 0.5%;
+                     //margin-top:1%;
+                   	}
+
+
+
+                    #headerpageone, #headerpagetwo, #headerpagethree {
+                   	color: white;
+                  		background: black;
+                  		height: 100%;
+                    width:80%;
+                  		display: flex;
+                  		justify-content: center;
+                  		align-items: center;
+                  		//border-radius: 10px;
+                    //border: 5px solid gray;
+                    }
+
+
+                    #xpageone {
+                        position: fixed;
+                        top: 0;
+                        left:0;
+                        height: 100vh;
+                        width: 100vw;
+                        background: dodgerBlue;
+                        display:none;
+                    }
+
+                    #pagetwo {
+                        position: fixed;
+                        top: 0;
+                        left:0;
+                        height: 100vh;
+                        width: 100vw;
+                        background: dodgerBlue;
+                        display:none;
+                    }
+
+                    #pagethree {
+                        position: fixed;
+                        top: 0;
+                        left:0;
+                        height: 100vh;
+                        width: 100vw;
+                        background: dodgerBlue;
+                        color: white;
+                        display:none;
+                    }
+
+                   	.dropdown, .statsdropdown {
+                   		position: relative;
+                   		display: inline-block;
+                   	}
+
+                   	.dropdown-content, .statsdropdown-content {
+                      		display: none;
+                   		position: absolute;
+                   		background-color: black;
+                   		min-width: 160px;
+                   		overflow: auto;
+                   		z-index: 1;
+                   		border-radius: 5px;
+                   		box-shadow: 10px 10px 25px black;
+                   		max-height: 85vh;
+                   	}
+
+                   	.dropdown-content a, .statsdropdown-content a {
+                   		color: black;
+                   		font-size: 4vh;
+                   		background: whiteSmoke;
+                   		padding: 9px 16px;
+                   		text-decoration: none;
+                   		display: block;
+                   		border: 1px solid gray;
+                   		border-radius: 5px;
+                   	}
+
+                   	.show {
+                   		display: block;
+                   	}
+                   	/* end of dropdown */
+
+
+                   	/* highlights selected player */
+
+                   	.highlight {
+                   		color: white;
+                   		background: dodgerBlue;
+                   	}
+
+                   	.scorelow {
+                   		font-size: 4vh;
+                   		color: lime;
+                   		display: inline-block;
+                   		border: 1px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   	}
+                   	/* highlights keyboard score pressed */
+
+                   	.scorehigh {
+                   		font-size: 4vh;
+                   		color: white;
+                   		display: inline-block;
+                   		border: 5px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   		background: dodgerBlue;
+                   	}
+
+                      	#info {
+                   		display: none;
+                   		overflow: auto;
+                   		position: absolute;
+                   		top: 0;
+                   		left: 0;
+                   		height: 100%;
+                   		width: 100%;
+                   		color: white;
+                   		background-color: black;
+                   		padding-left: 1px;
+                   		padding-right: 1px;
+                   		padding-bottom: 1px;
+
+                   	}
+
+                   	#popuppanel {
+                   		background-color: #ddd;
+                   		font-size: 3vh;
+                   		display: inline-block;
+                   		border-radius: 3px;
+                   		border: 1px solid #aaa;
+                   		padding: 10px;
+                   		margin: 5vw;
+                   		text-align: center;
+                   		width: 80vw;
+
+                   		cursor: pointer;
+                   	}
+                   	/* hide forms */
+
+                   	#my-response-iframe,
+                   	#my-form {
+                   		display: none;
+                   	}
+                   	/* */
+
+                   	.child-one {
+                   		height: 7vh;
+                   		font-size: 3vh;
+
+                     display: flex;
+                   	}
+
+                    .child-two {
+                   		height: 7vh;
+                   		font-size: 3vh;
+            flex-direction: row;
+                     display: flex;
+                     //flex-wrap: wrap;
+                   	}
+
+                    .child-three {
+                   		height: 7vh;
+                   		font-size: 2.5vh;
+
+                     display: flex;
+                     //flex-wrap: wrap;
+                   	}
+
+
+                   	/* player names */
+
+                   	#p1name {
+                   		font-size: 3vh;
+                   		display: inline-block;
+                   		width: calc(100% / 3 * 2);
+                   		height: 8vh;
+                   		line-height: 8vh;
+                   		border: 1px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   	}
+                   	/* player scores */
+
+                   	#p1score {
+                   		font-size: 4vh;
+                   		display: inline-block;
+                   		width: calc(100% / 3);
+                   		height: 8vh; //calc(100% / 9);
+                   		line-height: 8vh;
+                   		padding-left: 5%;
+                   		padding-right: 5%;
+                   		border: 1px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   	}
+                   	/* default "keyboard" */
+
+                   	.small {
+                   		font-size: 4vh;
+                     color: lime;
+                   		display: inline-block;
+                   		height: 7vh;
+                   		line-height: 7vh;
+                   		padding-left: 20%;
+                   		padding-right: 20%;
+                   		border: 1px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   	}
+                   	/* banner hole details */
+
+                   	#holedetails {
+                   		color: white;
+                   		background: black;
+                   		font-size: 3vh;
+                   		display: inline-block;
+                   		width: 100%;
+                   		height: 5vh;
+                   		line-height: 5vh;
+                   		padding-left: 5%;
+                   		padding-right: 5%;
+                   		border: 1px solid Gray;
+                   		text-align: center;
+                   		font-family: Arial, Helvetica, sans-serif;
+                   		border-radius: 5px;
+                   	}
+
+
+
+                   	#player4ballplayer {
+                   		width: 30%;
+                   		padding: 1vw;
+
+                   	}
+
+                   	#player4ballname {
+                   		width: 55%;
+                   		padding: 1vw;
+
+                   	}
+
+                   	#player4ballhcp {
+                   		width: 15%;
+                   		padding: 1vw;
+
+                   	}
+
+                   	.submit {
+                   		font-size: 100%;
+                   		color: white;
+                   		//background: dodgerBlue;
+                   		height: 100%;
+                   		line-height: 10vh;
+                   		text-align: center;
+                   	}
+
+
+
+
+                   	#sending {
+                   		position: relative;
+                   		background: black;
+                   	}
+
+
+
+                       #front9 {
+                         color:  white;
+                         //height:  100vh;
+                       }
+
+                       tr {
+                           text-align: center;
+                       }
+                       td {
+                           width: calc(100vw/6);
+                       }
+                       .head {
+                           font-size: 2vh;
+                       }
+
+                       #hole1,
+                       #hole2,
+                       #hole3,
+                       #hole4,
+                       #hole5,
+                       #hole6,
+                       #hole7,
+                       #hole8,
+                       #hole9,
+                       #hole10,
+                       #hole11,
+                       #hole12,
+                       #hole13,
+                       #hole14,
+                       #hole15,
+                       #hole16,
+                       #hole17,
+                       #hole18 {
+                           color: cyan;
+                       }
+
+                       #front9points ,
+                       #back9points {
+                           border: 1px solid cyan;
+                       }
+
+
+                       #score1,
+                       #score2,
+                       #score3,
+                       #score4,
+                       #score5,
+                       #score6,
+                       #score7,
+                       #score8,
+                       #score9 {
+                           //margin: 3vh;
+                           width: calc(100vw / 3);
+                           color: lime;
+                           border-radius: 10px;
+                           border: 5px solid gray;
+                           height:12vh;
+                           font-size: 10vw;
+
+                       }
+
+                       #pageone {
+
+                       }
+
+                      #acceptpanel, #statspanel {
+                          display: none;
+                          position: fixed;
+                          //top: 20vh;
+
+                          bottom: 5vh;
+                          //left: 2vw;
+                          //right: 20vw;
+
+                        border: 1px silver solid;
+                          background: black;
+                          color: white;
+                          font-size: 4vw;
+                          padding: 5vw;
+                          border-radius: 5px;
+                          text-align: center;
+
+                          margin-left: 14vw;
+                          //margin-right: 5vw;
+                          //margin: auto;
+                          //width: 80vw;
+                          //height: 40vh;
+
+                          //opacity: 1;
+
+                      }
+
+                   .button1 {
+                       width: 25vw;
+                       height: 10vh;
+                       text-align: center;
+                       //padding: 2vw;
+                      font-size: 4vw;
+                       border-radius: 5px;
+                       //margin: 5vw;
+                       background: silver;
+                   }
+
+                   .spacer1vh {
+                       //height: 2vh;
+                       display: flex;
+                       padding: 0.5vh;
+                   }
+
+                   #podium, #home, #stat {
+                       height: 5vh;
+                       width: 5vh;
+                   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   /* for each day */
+                   #createleaderboarditems {
+                       text-align: center;
+                       color: white;
+                       font-size: 4vh;
+                       height: auto;
+                       display: block;
+                   }
+
+                   .team {
+                       //position: absolute;
+                       width: 90%;
+                       height: 5vh;
+                       margin-left: 5%;
+                       margin-top: 2%;
+                       margin-bottom: 2%;
+                       background: rgba(105, 105, 105, 0.8);
+                       box-shadow: 0 3px 5px black;
+                       display: flex;
+                       align-items: center;
+                       transition-property: top;
+                       transition-duration: 1500ms;
+                       border-radius: 10px;
+                       transition-timing-function: cubic-bezier(
+                           0.68,
+                           -0.55,
+                           0.265,
+                           1.55
+                       );
+                       border: 4px solid rgba(255, 255, 255, 0.3);
+                       background-clip: padding-box;
+                   }
+
+                   .name {
+                       //height: 50%;
+                       width: 30%;
+                       display: flex;
+                       align-items: center;
+                       justify-content: left;
+                       font-size: 1.3rem;
+                       color: white;
+                       font-weight: 400;
+                       text-transform: capitalize;
+                   }
+
+                   .scores {
+                       //height: 50%;
+                       width: 12%;
+                       font-size: 1.3rem;
+                       color: white;
+                       font-weight: 400;
+                       display: flex;
+                       text-align: center;
+                       justify-content: center;
+                   }
+
+                   .position {
+                       //height: 50%;
+                       width: 12%;
+                       font-size: 1.3rem;
+                       color: white;
+                       font-weight: 400;
+                       display: flex;
+                       text-align: center;
+                       justify-content: center;
+                   }
+
+
+            #headerinfo {
+            padding-top: 2vh;
+            padding-bottom: 1vh;
+            color: white;
+            font-size: 7vw;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
+
+
+
+
+            width: 80%;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+            #footerinfo, #footerstats {
+            position: absolute;
+               bottom: 200px;
+               width:100%;
+            color: white;
+            font-size: 4vw;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            }
+
+            .bird {
+            width:8%;
+            padding-right: 1vw;
+            visibility: hidden;
+            }
+
+            .birdimg {
+            src: "bird.png";
+            height:2vh;
+            width: 7vw;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            }
+
+            .flag {
+            width:7%;
+            visibility: hidden;
+            }
+
+            .flagimg {
+            src: "flag.png";
+            height:2vh;
+            width: 7vw;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            }
+
+            #statsinfo {
+            width: 300px;
+            height: 300px;
+            border: 1px solid cyan;
+            display: flex;
+            }
+
+            #statsinfo div {
+            border: 1px sold yellow;
+            flex: 1;
+            }
+
+
+
+
+
+
+                        .table {
+                            align: left;
+                            cellpadding: 1;
+                            cellspacing: 1;
+
+
+                        }
+
+
+
+
+
+            .table_component {
+            overflow: auto;
+            width: 100%;
+            }
+
+            .table_component table {
+            //border: 1px solid #dededf;
+            height: 100%;
+            width: 100%;
+            //table-layout: fixed;
+            border-collapse: collapse;
+            border-spacing: 1px;
+            text-align: center;
+            font-size: 3.5vw;
+            }
+
+            .table_component caption {
+            caption-side: top;
+            text-align: left;
+            }
+
+            .table_component th {
+            //border: 1px solid indigo;
+            background-color: #1589FF;
+            color: cyan; //white;
+            padding: 5px;
+            }
+
+            .table_component td {
+            //border: 1px solid indigo;
+            background-color: dodgerBlue;
+            color: white;
+            padding: 5px;
+            //border: 1px solid silver;
+            }
+
+            .table_component table tbody tr:nth-of-type(even) > * {
+            background: #1589FF;
+            }
+
+            #toptr {
+            color: cyan;
+            }
+
+            .cyan {
+
+            background: dodgerBlue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="pageone">
+            <!-- scoreentry -->
+            <div class="child-one">
+                <div onclick="toggleDropdown()" class="dropbtn" id="dropbtn">select player</div>
+
+                <div id="playersDropdown" class="dropdown-content"></div>
+            </div>
+        </div>
+
+        <div id="pagetwo">
+            <!-- leaderboard -->
+            <div class="child-two">
+                <div id="headerpagetwo">Leaderboard</div>
+
+                <!-- icon link to stats -->
+                <div id="iconpagetwo" onclick="showPageThree()">
+                    <img id="stat" src="stat.png" width="90vw" />
+                </div>
+
+                <!-- popup stats panel -->
+                <div id="statspanel" onclick="hidestatspanel()">stats go here</div>
+
+                <!--
+
+
+
+
+
+
+
+
+
+<!--
+<div id="footerinfo" onclick="closeLeaderBoard()">
+<img src="exit.png" width="90vw" />
+</div>
+-->
+            </div>
+            <div id="createleaderboarditems">checking ...</div>
+        </div>
+
+        <div id="pagethree">
+            <!-- stats -->
+            <div class="child-three">
+                <div id="headerpagethree">no player selected</div>
+
+                <div id="iconpagethree" onclick="showPageOne()">
+                    <img id="home" src="home.png" width="90vw" />
+                </div>
+            </div>
+            <div class="table_component" role="region" tabindex="0">
+                <table>
+                    <thead>
+                        <tr id="toptr">
+                            <th>Hole</th>
+                            <th>par</th>
+                            <th>si</th>
+                            <th>strokes</th>
+                            <th>points</th>
+                            <th>%over</th>
+                            <th>perf</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="a1"></td>
+                            <td id="b1"></td>
+                            <td id="c1"></td>
+                            <td id="d1"></td>
+                            <td id="e1"></td>
+                            <td id="f1"></td>
+                            <td id="g1"></td>
+                        </tr>
+                        <tr>
+                            <td id="a2"></td>
+                            <td id="b2"></td>
+                            <td id="c2"></td>
+                            <td id="d2"></td>
+                            <td id="e2"></td>
+                            <td id="f2"></td>
+                            <td id="g2"></td>
+                        </tr>
+                        <tr>
+                            <td id="a3"></td>
+                            <td id="b3"></td>
+                            <td id="c3"></td>
+                            <td id="d3"></td>
+                            <td id="e3"></td>
+                            <td id="f3"></td>
+                            <td id="g3"></td>
+                        </tr>
+                        <tr>
+                            <td id="a4"></td>
+                            <td id="b4"></td>
+                            <td id="c4"></td>
+                            <td id="d4"></td>
+                            <td id="e4"></td>
+                            <td id="f4"></td>
+                            <td id="g4"></td>
+                        </tr>
+                        <tr>
+                            <td id="a5"></td>
+                            <td id="b5"></td>
+                            <td id="c5"></td>
+                            <td id="d5"></td>
+                            <td id="e5"></td>
+                            <td id="f5"></td>
+                            <td id="g5"></td>
+                        </tr>
+                        <tr>
+                            <td id="a6"></td>
+                            <td id="b6"></td>
+                            <td id="c6"></td>
+                            <td id="d6"></td>
+                            <td id="e6"></td>
+                            <td id="f6"></td>
+                            <td id="g6"></td>
+                        </tr>
+                        <tr>
+                            <td id="a7"></td>
+                            <td id="b7"></td>
+                            <td id="c7"></td>
+                            <td id="d7"></td>
+                            <td id="e7"></td>
+                            <td id="f7"></td>
+                            <td id="g7"></td>
+                        </tr>
+                        <tr>
+                            <td id="a8"></td>
+                            <td id="b8"></td>
+                            <td id="c8"></td>
+                            <td id="d8"></td>
+                            <td id="e8"></td>
+                            <td id="f8"></td>
+                            <td id="g8"></td>
+                        </tr>
+                        <tr>
+                            <td id="a9"></td>
+                            <td id="b9"></td>
+                            <td id="c9"></td>
+                            <td id="d9"></td>
+                            <td id="e9"></td>
+                            <td id="f9"></td>
+                            <td id="g9"></td>
+                        </tr>
+                        <tr>
+                            <td id="a10"></td>
+                            <td id="b10"></td>
+                            <td id="c10"></td>
+                            <td id="d10"></td>
+                            <td id="e10"></td>
+                            <td id="f10"></td>
+                            <td id="g10"></td>
+                        </tr>
+                        <tr>
+                            <td id="a11"></td>
+                            <td id="b11"></td>
+                            <td id="c11"></td>
+                            <td id="d11"></td>
+                            <td id="e11"></td>
+                            <td id="f11"></td>
+                            <td id="g11"></td>
+                        </tr>
+                        <tr>
+                            <td id="a12"></td>
+                            <td id="b12"></td>
+                            <td id="c12"></td>
+                            <td id="d12"></td>
+                            <td id="e12"></td>
+                            <td id="f12"></td>
+                            <td id="g12"></td>
+                        </tr>
+                        <tr>
+                            <td id="a13"></td>
+                            <td id="b13"></td>
+                            <td id="c13"></td>
+                            <td id="d13"></td>
+                            <td id="e13"></td>
+                            <td id="f13"></td>
+                            <td id="g13"></td>
+                        </tr>
+                        <tr>
+                            <td id="a14"></td>
+                            <td id="b14"></td>
+                            <td id="c14"></td>
+                            <td id="d14"></td>
+                            <td id="e14"></td>
+                            <td id="f14"></td>
+                            <td id="g14"></td>
+                        </tr>
+                        <tr>
+                            <td id="a15"></td>
+                            <td id="b15"></td>
+                            <td id="c15"></td>
+                            <td id="d15"></td>
+                            <td id="e15"></td>
+                            <td id="f15"></td>
+                            <td id="g15"></td>
+                        </tr>
+                        <tr>
+                            <td id="a16"></td>
+                            <td id="b16"></td>
+                            <td id="c16"></td>
+                            <td id="d16"></td>
+                            <td id="e16"></td>
+                            <td id="f16"></td>
+                            <td id="g16"></td>
+                        </tr>
+                        <tr>
+                            <td id="a17"></td>
+                            <td id="b17"></td>
+                            <td id="c17"></td>
+                            <td id="d17"></td>
+                            <td id="e17"></td>
+                            <td id="f17"></td>
+                            <td id="g17"></td>
+                        </tr>
+                        <tr>
+                            <td id="a18"></td>
+                            <td id="b18"></td>
+                            <td id="c18"></td>
+                            <td id="d18"></td>
+                            <td id="e18"></td>
+                            <td id="f18"></td>
+                            <td id="g18"></td>
+                        </tr>
+                        <tr>
+                            <td id="a19"></td>
+                            <td id="b19"></td>
+                            <td id="c19"></td>
+                            <td id="d19"></td>
+                            <td id="e19"></td>
+                            <td id="f19"></td>
+                            <td id="g19"></td>
+                        </tr>
+
+                        <tr>
+                            <td id="a20"></td>
+                            <td id="b20"></td>
+                            <td id="c20"></td>
+                            <td id="d20"></td>
+                            <td id="e20"></td>
+                            <td id="f20"></td>
+                            <td id="g20"></td>
+                        </tr>
+                        <tr>
+                            <td id="a21"></td>
+                            <td id="b21"></td>
+                            <td id="c21"></td>
+                            <td id="d21"></td>
+                            <td id="e21"></td>
+                            <td id="f21"></td>
+                            <td id="g21"></td>
+                        </tr>
+                        <tr>
+                            <td id="a22"></td>
+                            <td id="b22"></td>
+                            <td id="c22"></td>
+                            <td id="d22"></td>
+                            <td id="e22"></td>
+                            <td id="f22"></td>
+                            <td id="g22"></td>
+                        </tr>
+                        <tr>
+                            <td id="a23"></td>
+                            <td id="b23"></td>
+                            <td id="c23"></td>
+                            <td id="d23"></td>
+                            <td id="e23"></td>
+                            <td id="f23"></td>
+                            <td id="g23"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 8px"></div>
+            </div>
+            <!--
+<div id="footerstats">
+<img src="exit.png" width="90vw" />
+</div>
+-->
+        </div>
+        <!-- end of pagethree -->
+
+        <!-- spacer -->
+        <div class="spacer1vh"></div>
+
+        <!-- popup accept panel -->
+        <div id="acceptpanel">
+            <span id="playerx"></span>
+            <br /><br />
+
+            Accept to save or Reject to re-edit.
+            <br /><br />
+            <button class="button1" onclick="rejectButton()">Reject</button>
+            <button class="button1" onclick="acceptButton()">Accept</button>
+        </div>
+
+        <!-- numbers grid -->
+        <div id="front9">
+            <table class="table" border="1" style="height: 85%; width: 100%">
+                <tbody>
+                    <tr>
+                        <td class="head">hole</td>
+                        <td class="head">strokes</td>
+                        <td class="head">points</td>
+                        <td class="head">hole</td>
+                        <td class="head">strokes</td>
+                        <td class="head">points</td>
+                    </tr>
+                    <tr>
+                        <td id="hole1" onclick="resethole(this.id)">1</td>
+                        <td id="strokes1">0</td>
+                        <td id="points1">0</td>
+                        <td id="hole10" onclick="resethole(this.id)">10</td>
+                        <td id="strokes10">0</td>
+                        <td id="points10">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole2" onclick="resethole(this.id)">2</td>
+                        <td id="strokes2">0</td>
+                        <td id="points2">0</td>
+                        <td id="hole11" onclick="resethole(this.id)">11</td>
+                        <td id="strokes11">0</td>
+                        <td id="points11">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole3" onclick="resethole(this.id)">3</td>
+                        <td id="strokes3">0</td>
+                        <td id="points3">0</td>
+                        <td id="hole12" onclick="resethole(this.id)">12</td>
+                        <td id="strokes12">0</td>
+                        <td id="points12">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole4" onclick="resethole(this.id)">4</td>
+                        <td id="strokes4">0</td>
+                        <td id="points4">0</td>
+                        <td id="hole13" onclick="resethole(this.id)">13</td>
+                        <td id="strokes13">0</td>
+                        <td id="points13">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole5" onclick="resethole(this.id)">5</td>
+                        <td id="strokes5">0</td>
+                        <td id="points5">0</td>
+                        <td id="hole14" onclick="resethole(this.id)">14</td>
+                        <td id="strokes14">0</td>
+                        <td id="points14">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole6" onclick="resethole(this.id)">6</td>
+                        <td id="strokes6">0</td>
+                        <td id="points6">0</td>
+                        <td id="hole15" onclick="resethole(this.id)">15</td>
+                        <td id="strokes15">0</td>
+                        <td id="points15">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole7" onclick="resethole(this.id)">7</td>
+                        <td id="strokes7">0</td>
+                        <td id="points7">0</td>
+                        <td id="hole16" onclick="resethole(this.id)">16</td>
+                        <td id="strokes16">0</td>
+                        <td id="points16">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole8" onclick="resethole(this.id)">8</td>
+                        <td id="strokes8">0</td>
+                        <td id="points8">0</td>
+                        <td id="hole17" onclick="resethole(this.id)">17</td>
+                        <td id="strokes17">0</td>
+                        <td id="points17">0</td>
+                    </tr>
+                    <tr>
+                        <td id="hole9" onclick="resethole(this.id)">9</td>
+                        <td id="strokes9">0</td>
+                        <td id="points9">0</td>
+                        <td id="hole18" onclick="resethole(this.id)">18</td>
+                        <td id="strokes18">0</td>
+                        <td id="points18">0</td>
+                    </tr>
+                    <tr>
+                        <td>total</td>
+                        <td id="front9strokes">0</td>
+                        <td id="front9points">0</td>
+                        <td>total</td>
+                        <td id="back9strokes">0</td>
+                        <td id="back9points">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- spacer -->
+
+            <div class="spacer1vh"></div>
+
+            <!-- numberpad -->
+            <table class="table" border="0" style="height: 85%; width: 100%">
+                <tbody>
+                    <tr>
+                        <td colspan="2" id="score1" onclick="numberScore(this.id)">1</td>
+                        <td colspan="2" id="score2" onclick="numberScore(this.id)">2</td>
+                        <td colspan="2" id="score3" onclick="numberScore(this.id)">3</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="score4" onclick="numberScore(this.id)">4</td>
+                        <td colspan="2" id="score5" onclick="numberScore(this.id)">5</td>
+                        <td colspan="2" id="score6" onclick="numberScore(this.id)">6</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="score7" onclick="numberScore(this.id)">7</td>
+                        <td colspan="2" id="score8" onclick="numberScore(this.id)">8</td>
+                        <td colspan="2" id="score9" onclick="numberScore(this.id)">9</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--end of front 9 -->
+
+        <form
+            action="https://docs.google.com/forms/d/1rdOMiRKknHtO8oJboWZjBx8EX0_NCa2nKIx09nPfXp8/formResponse"
+            id="my-form"
+            method="post"
+            name="my-form"
+            target="my-response-iframe">
+            <!-- name -->
+            <input id="mx693174004" name="entry.693174004" type="text" value="default" />
+            <!-- score -->
+            <input id="mx620915683" name="entry.620915683" type="text" value="default" />
+            <!-- day -->
+            <input id="mx1693107131" name="entry.1693107131" type="text" value="default" />
+            <!-- birdies -->
+            <input id="mx2003386189" name="entry.2003386189" type="text" value="default" />
+            <!-- h1 -->
+            <input id="mx674343360" name="entry.674343360" type="text" value="default" />
+            <!-- h2 -->
+            <input id="mx198561045" name="entry.198561045" type="text" value="default" />
+            <!-- h3 -->
+            <input id="mx843506492" name="entry.843506492" type="text" value="default" />
+            <!-- h4 -->
+            <input id="mx169380928" name="entry.169380928" type="text" value="default" />
+            <!-- h5 -->
+            <input id="mx737864114" name="entry.737864114" type="text" value="default" />
+            <!-- h6 -->
+            <input id="mx1571961784" name="entry.1571961784" type="text" value="default" />
+            <!-- h7 -->
+            <input id="mx471096160" name="entry.471096160" type="text" value="default" />
+            <!-- h8 -->
+            <input id="mx126201380" name="entry.126201380" type="text" value="default" />
+            <!-- h9 -->
+            <input id="mx778564770" name="entry.778564770" type="text" value="default" />
+            <!-- h10 -->
+            <input id="mx1597010693" name="entry.1597010693" type="text" value="default" />
+            <!-- h11 -->
+            <input id="mx1187649921" name="entry.1187649921" type="text" value="default" />
+            <!-- h12 -->
+            <input id="mx1538253026" name="entry.1538253026" type="text" value="default" />
+            <!-- h13 -->
+            <input id="mx1346124026" name="entry.1346124026" type="text" value="default" />
+            <!-- h14 -->
+            <input id="mx40855502" name="entry.40855502" type="text" value="default" />
+            <!-- h15 -->
+            <input id="mx1197406545" name="entry.1197406545" type="text" value="default" />
+            <!-- h16 -->
+            <input id="mx2014527734" name="entry.2014527734" type="text" value="default" />
+            <!-- h17 -->
+            <input id="mx839612202" name="entry.839612202" type="text" value="default" />
+            <!-- h18 -->
+            <input id="mx2069238611" name="entry.2069238611" type="text" value="default" />
+            <!-- p1 -->
+            <input id="mx863123802" name="entry.863123802" type="text" value="default" />
+            <!-- p2 -->
+            <input id="mx909665606" name="entry.909665606" type="text" value="default" />
+            <!-- p3 -->
+            <input id="mx559953478" name="entry.559953478" type="text" value="default" />
+            <!-- p4 -->
+            <input id="mx553966355" name="entry.553966355" type="text" value="default" />
+            <!-- p5 -->
+            <input id="mx544592194" name="entry.544592194" type="text" value="default" />
+            <!-- p6 -->
+            <input id="mx257972239" name="entry.257972239" type="text" value="default" />
+            <!-- p7 -->
+            <input id="mx215646764" name="entry.215646764" type="text" value="default" />
+            <!-- p8 -->
+            <input id="mx1925588416" name="entry.1925588416" type="text" value="default" />
+            <!-- p9 -->
+            <input id="mx1592088012" name="entry.1592088012" type="text" value="default" />
+            <!-- p10 -->
+            <input id="mx367122893" name="entry.367122893" type="text" value="default" />
+            <!-- p11 -->
+            <input id="mx1977397574" name="entry.1977397574" type="text" value="default" />
+            <!-- p12 -->
+            <input id="mx561835634" name="entry.561835634" type="text" value="default" />
+            <!-- p13 -->
+            <input id="mx520203825" name="entry.520203825" type="text" value="default" />
+            <!-- p14 -->
+            <input id="mx1943641728" name="entry.1943641728" type="text" value="default" />
+            <!-- p15 -->
+            <input id="mx2086437733" name="entry.2086437733" type="text" value="default" />
+            <!-- p16 -->
+            <input id="mx61441653" name="entry.61441653" type="text" value="default" />
+            <!-- p17 -->
+            <input id="mx1214112516" name="entry.1214112516" type="text" value="default" />
+            <!-- p18 -->
+            <input id="mx1238567880" name="entry.1238567880" type="text" value="default" />
+
+            <input type="submit" />
+        </form>
+        <!-- google iframe inserted here - invisible -->
+        <iframe
+            title="roundinput"
+            height="0"
+            id="my-response-iframe"
+            name="my-response-iframe"
+            src="https://docs.google.com/forms/d/1rdOMiRKknHtO8oJboWZjBx8EX0_NCa2nKIx09nPfXp8/viewform?embedded=true"
+            width="0">
+        </iframe>
+
+        <script>
+            // prevent default img menu of options
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+            });
+
+            //=================================================================================
+            // this runs on startup or reload
+            //
+            //=================================================================================
+            // declare global variables
+
+            var currenthole = 0;
+
+            var selectedplayer = 1;
+            // highlight first player entry
+            //	document.getElementById("p1name").classList.add("highlight");
+            var arrCourse = [];
+            //var arrHcps = [];
+            //var arrPlayers = [];
+            var arrBirdies = [];
+            var arrStatsData = [];
+            //var arrLadies = [];
+            var arrOptions = [];
+            var oldArrOptions = [];
+            var arrPlayersDropdown = [];
+            var arrHcpsDropdown = [];
+            var compcourse = "none";
+            var compdate = "";
+            var shotsscore = "";
+
+            // declare global variables
+            var hcp = "0";
+            var player = "select player";
+            var comp;
+            var course = "";
+            var arrOptions = [];
+            var hcplist = "";
+            var msglist = "";
+            var msglistcount = 0;
+            var player1name = "player 1";
+
+            var player1hcp = "?";
+            var fullday = "";
+            //var datastream;
+            var player1teecolor = "yellow";
+
+            var whichhole = 1;
+            var frontp1 = 0;
+            var frontp2 = 0;
+            var frontp3 = 0;
+            var backp1 = 0;
+            var backp2 = 0;
+            var backp3 = 0;
+            var allp1 = 0;
+            var allp2 = 0;
+            var allp3 = 0;
+            var fronttxt9 = "";
+            var backtxt9 = "";
+            var alltxt18 = "";
+            var winspercent = 0;
+            var scorelist = "";
+
+            var data;
+
+            var currentday;
+
+            //==============================================================
+            // data may change so retrieve it on each occasion
+            //==============================================================
+            // retrieve arrays
+
+            dd = new Date();
+            day = dd.getDay();
+            date = dd.getDate();
+            month = dd.getMonth();
+            days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            //============================================
+            // default
+            //console.log(day + " using Monday as default")
+            // console.log(day + " Monday")
+            //course = "Calanova";
+            fullday = days[day] + " " + date + " " + months[month];
+            currentday = days[day];
+
+            //console.log(fullday);
+            if (days[day] === "Monday") {
+                setupCourseMonday();
+            }
+            if (days[day] === "Tuesday") {
+                setupCourseTuesday();
+            }
+            if (days[day] === "Wednesday") {
+                setupCourseWednesday();
+            }
+            if (days[day] === "Thursday") {
+                setupCourseThursday();
+            }
+            if (days[day] === "Friday") {
+                setupCourseFriday();
+            }
+
+            // test
+            //==========================
+            //==========================
+            //==========================
+            setupCourseMonday();
+            currentday = "Monday";
+            //==========================
+            //==========================
+            //==========================
+            //============================================
+
+            function setupCourseMonday() {
+                // set up courses with details for calculations etc.
+                // array ["hole num",par,si]
+                // Calanova
+                // Monday
+                // hole, par, si
+                arrCourse = [
+                    [0, 0, 0],
+                    [1, 5, 9],
+                    [2, 4, 5],
+                    [3, 4, 13],
+                    [4, 4, 11],
+                    [5, 4, 1],
+                    [6, 3, 7],
+                    [7, 4, 15],
+                    [8, 3, 17],
+                    [9, 5, 3],
+                    [10, 5, 6],
+                    [11, 4, 4],
+                    [12, 4, 18],
+                    [13, 3, 12],
+                    [14, 5, 2],
+                    [15, 4, 8],
+                    [16, 4, 10],
+                    [17, 3, 16],
+                    [18, 4, 14]
+                ];
+            }
+
+            function setupCourseTuesday() {
+                // set up courses with details for calculations etc.
+                // array ["hole num",par,si]
+                // La Cala America
+                // Tuesday
+                // hole, par, si
+                arrCourse = [
+                    [0, 0, 0],
+                    [1, 5, 10],
+                    [2, 4, 14],
+                    [3, 4, 16],
+                    [4, 3, 6],
+                    [5, 4, 12],
+                    [6, 5, 2],
+                    [7, 4, 4],
+                    [8, 3, 18],
+                    [9, 5, 8],
+                    [10, 4, 7],
+                    [11, 3, 13],
+                    [12, 4, 5],
+                    [13, 4, 3],
+                    [14, 3, 15],
+                    [15, 5, 1],
+                    [16, 3, 17],
+                    [17, 4, 9],
+                    [18, 5, 11]
+                ];
+            }
+
+            function setupCourseWednesday() {
+                // set up courses with details for calculations etc.
+                // array ["hole num",par,si]
+                // Los Lagos
+                // Wednesday
+                // hole, par, si
+                arrCourse = [
+                    [0, 0, 0],
+                    [1, 5, 9],
+                    [2, 3, 17],
+                    [3, 4, 15],
+                    [4, 4, 7],
+                    [5, 5, 3],
+                    [6, 4, 1],
+                    [7, 4, 13],
+                    [8, 3, 5],
+                    [9, 4, 11],
+                    [10, 4, 2],
+                    [11, 3, 8],
+                    [12, 4, 10],
+                    [13, 5, 4],
+                    [14, 4, 6],
+                    [15, 5, 16],
+                    [16, 3, 18],
+                    [17, 4, 14],
+                    [18, 4, 12]
+                ];
+            }
+
+            function setupCourseThursday() {
+                // set up courses with details for calculations etc.
+                // array ["hole num",par,si]
+                // La Cala Europa
+                // Thursday
+                // hole, par, si
+                arrCourse = [
+                    [0, 0, 0],
+                    [1, 4, 16],
+                    [2, 4, 8],
+                    [3, 3, 14],
+                    [4, 4, 2],
+                    [5, 4, 6],
+                    [6, 4, 12],
+                    [7, 4, 10],
+                    [8, 5, 4],
+                    [9, 3, 18],
+                    [10, 3, 17],
+                    [11, 5, 1],
+                    [12, 4, 13],
+                    [13, 4, 9],
+                    [14, 3, 7],
+                    [15, 5, 5],
+                    [16, 3, 15],
+                    [17, 5, 3],
+                    [18, 4, 11]
+                ];
+            }
+
+            function setupCourseFriday() {
+                // set up courses with details for calculations etc.
+                // array ["hole num",par,si]
+                // La Cala Asia
+                // Friday
+                // hole, par, si
+                arrCourse = [
+                    [0, 0, 0],
+                    [1, 4, 12],
+                    [2, 4, 16],
+                    [3, 3, 18],
+                    [4, 4, 2],
+                    [5, 5, 10],
+                    [6, 4, 4],
+                    [7, 3, 14],
+                    [8, 4, 8],
+                    [9, 5, 6],
+                    [10, 5, 1],
+                    [11, 3, 13],
+                    [12, 4, 3],
+                    [13, 4, 5],
+                    [14, 4, 17],
+                    [15, 4, 11],
+                    [16, 5, 7],
+                    [17, 3, 15],
+                    [18, 4, 9]
+                ];
+            }
+
+            //===========================
+            // this code runs at startup
+            //===========================
+            //change wording to show downloading, change back when complete
+            document.getElementById("dropbtn").innerText = "searching ...";
+            getData4Dropdown();
+
+            // need to set up a couple of arrays from the data in google sheets
+            async function getData4Dropdown() {
+                datastream = await fetch("https://opensheet.elk.sh/1h8KFNCYALzSixGZDgPRAweIrsXxDi6HH_ZBOj-tx58A/hcps");
+
+                if (!datastream.ok) {
+                    const message = `An error has occured: ${datastream.status}`;
+                    //throw new Error(message);
+                    alert("error: " + message);
+                } else {
+                    var resultsarray = await datastream.json();
+                    // split into separate arrays
+                    arrPlayersDropdown = resultsarray.map((d) => d.players);
+                    arrHcpsDropdown = resultsarray.map((d) => d.hcps);
+
+                    // remove null items
+                    arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
+                        return el != null;
+                    });
+                    arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
+                        return el != null;
+                    });
+
+                    // remove empty items
+                    arrPlayersDropdown = arrPlayersDropdown.filter(function (el) {
+                        return el != "";
+                    });
+                    arrHcpsDropdown = arrHcpsDropdown.filter(function (el) {
+                        return el != "";
+                    });
+
+                    //dd = new Date();
+                    //day = dd.getDay();
+
+                    //currentday = resultsarray[0].updated;
+
+                    // put correct wording back - signifies download completed
+                    document.getElementById("dropbtn").innerText = "select player";
+
+                    start();
+                }
+            }
+
+            //=============================================================
+            //=============================================================
+            // function start()
+            // - initialise everything and do checks etc.
+            //=============================================================
+            function start() {
+                // create options array for dropdown
+                for (var i = 0; i < arrPlayersDropdown.length; i++) {
+                    x = arrPlayersDropdown[i];
+                    arrOptions.push([x, 0]);
+                }
+
+                // create player dropdown
+                var select = document.getElementById("playersDropdown");
+                // this is what is created
+                //<a id="myLink1" href="#" onclick='dropSelected(this.innerText);return false;'>Graham Airey</a>
+                //
+                for (var i = 0; i < arrOptions.length; i++) {
+                    var el = document.createElement("a");
+                    el.id = "myLink" + i;
+                    el.setAttribute("onclick", "dropSelected(this.innerText);return false;");
+                    el.setAttribute("href", "#");
+                    el.innerText = arrOptions[i][0];
+                    select.appendChild(el);
+                }
+            } // end function start()
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function (event) {
+                if (!event.target.matches(".dropbtn")) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains("show")) {
+                            openDropdown.classList.remove("show");
+                        }
+                    }
+                }
+            };
+
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            //=============================================================
+            // function dropSelected(playerName)
+            // - selects player
+            //=============================================================
+            // name selected, do stuff
+            function dropSelected(playerName) {
+                //console.log(playerName)
+
+                // retrieve dropdown info
+                for (var k = 0; k < arrPlayersDropdown.length; k++) {
+                    if (arrPlayersDropdown[k] == playerName) {
+                        //found = true;
+                        //pos = k;
+                        hcp = arrHcpsDropdown[k];
+                        player1hcp = Math.round(hcp);
+                        player1name = playerName;
+                        // change "select player to course
+                        document.getElementById("dropbtn").innerText =
+                            player1name + " " + player1hcp + ":  " + currentday; //  days[day];
+                    }
+                }
+
+                // close dropdown
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains("show")) {
+                        openDropdown.classList.remove("show");
+                    }
+                }
+
+                // recalc in case a player name has changed
+                calcAllHoles();
+                document.getElementById("hole1").style.color = "black";
+                document.getElementById("hole1").style.background = "lime";
+
+                // highlight doublebogey
+                doubleBogeyCalc(hcp, arrCourse[1][1], arrCourse[1][2]);
+            }
+            //=============================================================
+            // function toggleDropdown()
+            // - show player name choices
+            //=============================================================
+            function toggleDropdown() {
+                // When the user clicks on the button, toggle between hiding and showing the dropdown content
+                document.getElementById("playersDropdown").classList.toggle("show");
+            }
+            //=================================================================================
+            // function numberScore(id)
+            // - enter player score and move on
+            //=================================================================================
+            function numberScore(id) {
+                // id is number button pressed eg. score5
+                // move onto first hole
+                currenthole++;
+                // set nexthole for highlight
+                nexthole = currenthole;
+                nexthole++;
+                if (nexthole >= 18) {
+                    nexthole = 18;
+                }
+
+                // color the hole
+                for (var i = 1; i <= 18; i++) {
+                    document.getElementById("hole" + i).style.color = "cyan";
+                    document.getElementById("hole" + i).style.background = "black";
+                }
+                document.getElementById("hole" + nexthole).style.color = "black";
+                document.getElementById("hole" + nexthole).style.background = "lime";
+
+                // highlight double bogey hole
+                if (currenthole <= 18) {
+                    // highlight doublebogey for next hole
+                    doubleBogeyCalc(hcp, arrCourse[nexthole][1], arrCourse[nexthole][2]);
+
+                    // put scores and points in current hole
+                    document.getElementById("strokes" + currenthole).innerText = id.replace("score", "");
+                    document.getElementById("points" + currenthole).innerText = pointsCalc(
+                        hcp,
+                        arrCourse[currenthole][1],
+                        arrCourse[currenthole][2],
+                        id.replace("score", "")
+                    );
+
+                    // update calc totals
+                    totalScores();
+                }
+
+                // update totals and show accept panel
+                if (currenthole >= 18) {
+                    currenthole = 18;
+                    var total18points =
+                        parseInt(document.getElementById("front9points").innerText) +
+                        parseInt(document.getElementById("back9points").innerText);
+
+                    document.getElementById("playerx").innerHTML = player1name + " " + total18points + " points";
+
+                    document.getElementById("acceptpanel").style.display = "block";
+                }
+            }
+            //=============================================================
+            // function resethole(id)
+            // - allow restart of score entry from a point
+            //=============================================================
+            function resethole(id) {
+                // reset hole current selection
+                for (var i = 1; i <= 18; i++) {
+                    document.getElementById("hole" + i).style.color = "cyan";
+                    document.getElementById("hole" + i).style.background = "black";
+                }
+                currenthole = id.replace("hole", "");
+                document.getElementById("hole" + currenthole).style.color = "black";
+                document.getElementById("hole" + currenthole).style.background = "lime";
+                currenthole--;
+                // recalc totals
+                totalScores();
+            }
+            //=============================================================
+            // function totalScores()
+            // - calc totals
+            //=============================================================
+            function totalScores() {
+                totalstrokesfront9 = 0;
+                totalstrokesback9 = 0;
+                totalpointsfront9 = 0;
+                totalpointsback9 = 0;
+
+                checkdigits = "0123456789";
+
+                for (var i = 1; i <= 9; i++) {
+                    checkhole = document.getElementById("strokes" + i).innerText;
+                    if (checkdigits.indexOf(checkhole) > -1) {
+                        totalstrokesfront9 += parseInt(checkhole);
+                    }
+                }
+
+                for (var i = 10; i <= 18; i++) {
+                    checkhole = document.getElementById("strokes" + i).innerText;
+                    if (checkdigits.indexOf(checkhole) > -1) {
+                        totalstrokesback9 += parseInt(checkhole);
+                    }
+                }
+                // do points
+                for (var i = 1; i <= 9; i++) {
+                    checkhole = document.getElementById("points" + i).innerText;
+                    if (checkdigits.indexOf(checkhole) > -1) {
+                        totalpointsfront9 += parseInt(checkhole);
+                    }
+                }
+
+                for (var i = 10; i <= 18; i++) {
+                    checkhole = document.getElementById("points" + i).innerText;
+                    if (checkdigits.indexOf(checkhole) > -1) {
+                        totalpointsback9 += parseInt(checkhole);
+                    }
+                }
+
+                document.getElementById("front9strokes").innerText = totalstrokesfront9;
+                document.getElementById("back9strokes").innerText = totalstrokesback9;
+
+                document.getElementById("front9points").innerText = totalpointsfront9;
+                document.getElementById("back9points").innerText = totalpointsback9;
+            }
+
+            //=============================================================
+            // function pointsCalc(xhcp, xpar, xsi, xscore)
+            // - convert scores to stableford points
+            //=============================================================
+            function pointsCalc(xhcp, xpar, xsi, xscore) {
+                //console.log(xhcp +","+ xpar+","+xsi+","+xscore+" = ")
+                hcp = parseInt(xhcp);
+                hcp = hcp.toFixed();
+                par = parseInt(xpar);
+                si = parseInt(xsi);
+                score = parseInt(xscore);
+
+                allowance = 0;
+                if (score == 0) {
+                    return 0;
+                } else {
+                    // cope with minus hcp
+                    if (hcp < 0) {
+                        // 18 plus a minus hcp
+                        if (18 + parseInt(hcp) < si) {
+                            allowance = -1;
+                        }
+                    }
+                    // allowance
+                    if (hcp >= si) {
+                        allowance = 1;
+                    }
+                    if (hcp >= 18 + si) {
+                        allowance = 2;
+                    }
+                    if (hcp >= 36 + si) {
+                        allowance = 3;
+                    }
+                    // points
+                    var points = par + allowance + 2 - score;
+                    // remove negative numbers
+                    if (points < 0) {
+                        points = 0;
+                    }
+                    return points;
+                }
+            }
+
+            //=============================================================
+            // function doubleBogeyCalc(xhcp, xpar, xsi, xscore)
+            // - indicates score to No stableford points
+            //=============================================================
+            function doubleBogeyCalc(xhcp, xpar, xsi) {
+                // reset color of numbers
+                for (n = 1; n <= 9; n++) {
+                    el = document.getElementById("score" + n);
+                    if (el.classList.contains("cyan")) {
+                        el.classList.remove("cyan");
+                    }
+                }
+
+                var db = 0;
+                var temp = 0;
+                for (xscore = 1; xscore <= 9; xscore++) {
+                    temp = pointsCalc(xhcp, xpar, xsi, xscore);
+                    if (temp == 0) {
+                        db = xscore;
+                        break;
+                    }
+                }
+
+                // set color of doublebogey number
+                document.getElementById("score" + db).classList.add("cyan");
+            }
+
+            //=============================================================
+            // function submitForm()
+            // - send info from HTML form to google form
+            //=============================================================
+            function submitForm() {
+                // player name
+                document.getElementById("mx693174004").value = player1name;
+                // day
+                document.getElementById("mx1693107131").value = currentday; //days[day];
+                // strokes 1 to 18
+                document.getElementById("mx674343360").value = document.getElementById("strokes1").innerText;
+                document.getElementById("mx198561045").value = document.getElementById("strokes2").innerText;
+                document.getElementById("mx843506492").value = document.getElementById("strokes3").innerText;
+                document.getElementById("mx169380928").value = document.getElementById("strokes4").innerText;
+                document.getElementById("mx737864114").value = document.getElementById("strokes5").innerText;
+                document.getElementById("mx1571961784").value = document.getElementById("strokes6").innerText;
+                document.getElementById("mx471096160").value = document.getElementById("strokes7").innerText;
+                document.getElementById("mx126201380").value = document.getElementById("strokes8").innerText;
+                document.getElementById("mx778564770").value = document.getElementById("strokes9").innerText;
+                document.getElementById("mx1597010693").value = document.getElementById("strokes10").innerText;
+                document.getElementById("mx1187649921").value = document.getElementById("strokes11").innerText;
+                document.getElementById("mx1538253026").value = document.getElementById("strokes12").innerText;
+                document.getElementById("mx1346124026").value = document.getElementById("strokes13").innerText;
+                document.getElementById("mx40855502").value = document.getElementById("strokes14").innerText;
+                document.getElementById("mx1197406545").value = document.getElementById("strokes15").innerText;
+                document.getElementById("mx2014527734").value = document.getElementById("strokes16").innerText;
+                document.getElementById("mx839612202").value = document.getElementById("strokes17").innerText;
+                document.getElementById("mx2069238611").value = document.getElementById("strokes18").innerText;
+                // points 1 to 18
+                // total the points as well
+                totalpoints = 0;
+                p1 = document.getElementById("mx863123802").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[1][1],
+                    arrCourse[1][2],
+                    document.getElementById("strokes1").innerText
+                );
+                p2 = document.getElementById("mx909665606").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[2][1],
+                    arrCourse[2][2],
+                    document.getElementById("strokes2").innerText
+                );
+                p3 = document.getElementById("mx559953478").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[3][1],
+                    arrCourse[3][2],
+                    document.getElementById("strokes3").innerText
+                );
+                console.log("player1hcp = " + player1hcp);
+                console.log("par = " + arrCourse[3][1]);
+                console.log("si = " + arrCourse[3][2]);
+                console.log("strokes = " + document.getElementById("strokes3").innerText);
+                p4 = document.getElementById("mx553966355").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[4][1],
+                    arrCourse[4][2],
+                    document.getElementById("strokes4").innerText
+                );
+                p5 = document.getElementById("mx544592194").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[5][1],
+                    arrCourse[5][2],
+                    document.getElementById("strokes5").innerText
+                );
+                p6 = document.getElementById("mx257972239").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[6][1],
+                    arrCourse[6][2],
+                    document.getElementById("strokes6").innerText
+                );
+                p7 = document.getElementById("mx215646764").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[7][1],
+                    arrCourse[7][2],
+                    document.getElementById("strokes7").innerText
+                );
+                p8 = document.getElementById("mx1925588416").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[8][1],
+                    arrCourse[8][2],
+                    document.getElementById("strokes8").innerText
+                );
+                p9 = document.getElementById("mx1592088012").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[9][1],
+                    arrCourse[9][2],
+                    document.getElementById("strokes9").innerText
+                );
+                p10 = document.getElementById("mx367122893").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[10][1],
+                    arrCourse[10][2],
+                    document.getElementById("strokes10").innerText
+                );
+                p11 = document.getElementById("mx1977397574").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[11][1],
+                    arrCourse[11][2],
+                    document.getElementById("strokes11").innerText
+                );
+                p12 = document.getElementById("mx561835634").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[12][1],
+                    arrCourse[12][2],
+                    document.getElementById("strokes12").innerText
+                );
+                p13 = document.getElementById("mx520203825").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[13][1],
+                    arrCourse[13][2],
+                    document.getElementById("strokes13").innerText
+                );
+                p14 = document.getElementById("mx1943641728").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[14][1],
+                    arrCourse[14][2],
+                    document.getElementById("strokes14").innerText
+                );
+                p15 = document.getElementById("mx2086437733").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[15][1],
+                    arrCourse[15][2],
+                    document.getElementById("strokes15").innerText
+                );
+                p16 = document.getElementById("mx61441653").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[16][1],
+                    arrCourse[16][2],
+                    document.getElementById("strokes16").innerText
+                );
+                //console.log("player1hcp = " + player1hcp);
+                //console.log("par = " + arrCourse[16][1]);
+                //console.log("si = " + arrCourse[16][2]);
+                //console.log("strokes = " + document.getElementById("strokes16").innerText);
+                p17 = document.getElementById("mx1214112516").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[17][1],
+                    arrCourse[17][2],
+                    document.getElementById("strokes17").innerText
+                );
+                p18 = document.getElementById("mx1238567880").value = pointsCalc(
+                    player1hcp,
+                    arrCourse[18][1],
+                    arrCourse[18][2],
+                    document.getElementById("strokes18").innerText
+                );
+
+                //console.log("p1 = " + p1);
+                //console.log("p2 = " + p2);
+                //console.log("p3 = " + p3);
+                //console.log("p4 = " + p4);
+                //console.log("p5 = " + p5);
+                //console.log("p6 = " + p6);
+                //console.log("p7 = " + p7);
+                //console.log("p8 = " + p8);
+                //console.log("p9 = " + p9);
+                //console.log("p10 = " + p10);
+                //console.log("p11 = " + p11);
+                //console.log("p12 = " + p12);
+                //console.log("p13 = " + p13);
+                //console.log("p14 = " + p14);
+                //console.log("p15 = " + p15);
+                //console.log("p16 = " + p16);
+                //console.log("p17 = " + p17);
+                //console.log("p18 = " + p18);
+
+                // now add all points together
+                totalpoints =
+                    Number(p1) +
+                    Number(p2) +
+                    Number(p3) +
+                    Number(p4) +
+                    Number(p5) +
+                    Number(p6) +
+                    Number(p7) +
+                    Number(p8) +
+                    Number(p9) +
+                    Number(p10) +
+                    Number(p11) +
+                    Number(p12) +
+                    Number(p13) +
+                    Number(p14) +
+                    Number(p15) +
+                    Number(p16) +
+                    Number(p17) +
+                    Number(p18);
+
+                document.getElementById("mx620915683").value = totalpoints;
+                console.log("totalpoints = " + totalpoints);
+
+                // now calc birdies
+                var b = 0;
+
+                for (i = 1; i <= 18; i++) {
+                    if (+document.getElementById("strokes" + i).innerText < arrCourse[i][1]) {
+                        b++;
+                    }
+                }
+                // and enter them
+                document.getElementById("mx2003386189").value = b;
+
+                //===== submit data ==========
+                //============================
+                document.forms[0].submit();
+                //   document.getElementById("submit").innerText = "submit done";
+                // vibrate if android phone or "pop" for anything else
+                const canVibrate = window.navigator.vibrate;
+                if (canVibrate) {
+                    window.navigator.vibrate(50);
+                }
+
+                setTimeout(function () {
+                    location.reload();
+                }, 500);
+            }
+
+            function resetInput() {
+                location.reload();
+            }
+
+            function acceptButton() {
+                document.getElementById("acceptpanel").style.display = "none";
+                submitForm();
+            }
+
+            function rejectButton() {
+                document.getElementById("acceptpanel").style.display = "none";
+            }
+
+            function clearForm() {
+                // reset each hole
+                for (var i = 1; i < arrTemp; i++) {
+                    document.getElementById(arrTemp[i]).innerText = "0";
+                }
+            }
+
+            function calcAllHoles() {
+                var teststring = "0123456789";
+                for (var i = 1; i <= 18; i++) {
+                    temp = document.getElementById("strokes" + i).innerText;
+                    if (teststring.indexOf(temp) > -1) {
+                        document.getElementById("points" + i).innerText = pointsCalc(
+                            player1hcp,
+                            arrCourse[i][1],
+                            arrCourse[i][2],
+                            document.getElementById("strokes" + i).innerText
+                        );
+                    }
+                }
+
+                totalScores();
+            }
+
+            function acceptButton() {
+                document.getElementById("acceptpanel").style.display = "none";
+                submitForm();
+            }
+
+            function rejectButton() {
+                document.getElementById("acceptpanel").style.display = "none";
+            }
+
+            function clearForm() {
+                // reset each hole
+                for (var i = 1; i <= 18; i++) {
+                    document.getElementById("strokes" + i).innerText = "0";
+                    document.getElementById("points" + i).innerText = "0";
+                }
+
+                document.getElementById("front9strokes").innerText = "0";
+                document.getElementById("back9strokes").innerText = "0";
+                document.getElementById("front9points").innerText = "0";
+                document.getElementById("back9points").innerText = "0";
+
+                currenthole = 1;
+                document.getElementById("hole18").style.background = "black";
+                document.getElementById("hole18").style.color = "cyan";
+
+                document.getElementById("strokes" + currenthole).style.color = "white";
+                document.getElementById("strokes" + currenthole).style.background = "black";
+
+                currenthole--;
+                // recalc totals
+                totalScores();
+            }
+
+            /*
+            https://docs.google.com/forms/d/e/1FAIpQLSdoRfF2ls0eDCMa04Eq-BdoiBuboUWyxDInS0y8RVjazKXAQg/viewform?usp=pp_url
+            &entry.693174004=name
+            &entry.620915683=score
+            &entry.1693107131=day
+            &entry.2003386189=birdies
+
+            &entry.674343360=h1
+            &entry.198561045=h2
+            &entry.843506492=h3
+            &entry.169380928=h4
+            &entry.737864114=h6
+            &entry.1571961784=h6
+            &entry.471096160=h7
+            &entry.126201380=h8
+            &entry.778564770=h9
+            &entry.1597010693=h10
+            &entry.1187649921=h11
+            &entry.1538253026=h12
+            &entry.1346124026=h13
+            &entry.40855502=h14
+            &entry.1197406545=h15
+            &entry.2014527734=h16
+            &entry.839612202=h17
+            &entry.2069238611=h18
+
+            &entry.863123802=p1
+            &entry.909665606=p2
+            &entry.559953478=p3
+            &entry.553966355=p4
+            &entry.544592194=p5
+            &entry.257972239=p6
+            &entry.215646764=p7
+            &entry.1925588416=p8
+            &entry.1592088012=p9
+            &entry.367122893=p10
+            &entry.1977397574=p11
+            &entry.561835634=p12
+            &entry.520203825=p13
+            &entry.1943641728=p14
+            &entry.2086437733=p15
+            &entry.61441653=p16
+            &entry.1214112516=p17
+            &entry.1238567880=p18
+            */
+        </script>
+    </body>
+</html>
