@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Golf Tournament Schedule</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            //background-color: #f4f7f6;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: dodgerBlue;
+        }
+        .stats-card {
+            background-color: gray;
+            border-left: 5px solid #40916c;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .instructions {
+            background-color: dodgerBlue;
+            //border-left: 5px solid #6c757d;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .round-container {
+            background: darkgray;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            //background-color: #2d6a4f;
+            color: white;
+            font-weight: 600;
+        }
+        .group-num {
+            font-weight: bold;
+            color: white;
+            width: 15%;
+        }
+        .player-pill {
+            display: inline-block;
+            background-color: dodgerBlue;
+            border: 1px solid blue;
+            padding: 4px 10px;
+            margin: 2px 4px;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+            font-family: arial;
+            font-size: 1.05em;
+        }
+        .player-pill:hover {
+            //background-color: #e2e8f0;
+            border-color: #94a3b8;
+        }
+        .player-pill.selected {
+            background-color: blue;
+            color: white;
+            border-color: #0284c7;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive Scheduler</h1>
+    
+    <div class="instructions">
+        Click any player's name to select them, then click any other player's name to swap their slots. The new tee slots are not saved and revert to the original "recommended" tee slots on a refresh.
+    </div>
+
+
+    <div id="schedule-output"></div>
+
+    <script>
+        const players = [
+            "Andrew", "Brian", "Bryan", "Colin", 
+            "David", "Larry", "Mark", "Paul", 
+            "Ray", "Simon", "Stephen", "Trevor"
+        ];
+
+        // original schedule matrix indices
+        const sched = [
+            [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]],
+            [[4, 8, 9, 0], [5, 10, 2, 1], [6, 7, 11, 3]],
+            [[5, 7, 10, 0], [6, 8, 3, 1], [4, 9, 11, 2]],
+            [[6, 9, 11, 0], [4, 7, 10, 1], [3, 5, 8, 2]]
+        ];
+
+        let selectedElement = null;
+        let selectedCoord = null; // Stores { roundIndex, groupIndex, playerIndex }
+
+        // Recalculates metrics and rebuilds the visual interface
+        function updateUI() {
+            const pairs = new Set();
+
+            // 1. Compute current unique pairs
+            sched.forEach(round => {
+                round.forEach(group => {
+                    for (let i = 0; i < group.length; i++) {
+                        for (let j = i + 1; j < group.length; j++) {
+                            const p1 = group[i];
+                            const p2 = group[j];
+                            const key = p1 < p2 ? `${p1}-${p2}` : `${p2}-${p1}`;
+                            pairs.add(key);
+                        }
+                    }
+                });
+            });
+
+            // 3. Render the tables
+            const outputContainer = document.getElementById('schedule-output');
+            outputContainer.innerHTML = ''; // Wipe existing HTML
+
+            sched.forEach((round, roundIdx) => {
+                const roundDiv = document.createElement('div');
+                roundDiv.className = 'round-container';
+                
+                let htmlContent = `<h2>Round ${roundIdx + 1}</h2>`;
+                htmlContent += `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tee</th>
+                                <th>Players (Click to swap)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                round.forEach((group, groupIdx) => {
+                    htmlContent += `
+                        <tr>
+                            <td class="group-num">Group ${groupIdx + 1}</td>
+                            <td>
+                    `;
+                    
+                    group.forEach((playerIdx, slotIdx) => {
+                        htmlContent += `
+                            <span class="player-pill" 
+                                  data-round="${roundIdx}" 
+                                  data-group="${groupIdx}" 
+                                  data-slot="${slotIdx}">
+                                ${players[playerIdx]}
+                            </span>
+                        `;
+                    });
+
+                    htmlContent += `
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                htmlContent += `
+                        </tbody>
+                    </table>
+                `;
+                
+                roundDiv.innerHTML = htmlContent;
+                outputContainer.appendChild(roundDiv);
+            });
+
+            // Re-bind click event listeners to new DOM pills
+            document.querySelectorAll('.player-pill').forEach(pill => {
+                pill.addEventListener('click', handlePlayerClick);
+            });
+        }
+
+        // Logic framework for selecting and swapping slots
+        function handlePlayerClick(e) {
+            const target = e.currentTarget;
+            const currentCoord = {
+                round: parseInt(target.dataset.round),
+                group: parseInt(target.dataset.group),
+                slot: parseInt(target.dataset.slot)
+            };
+
+            // First selection step
+            if (!selectedElement) {
+                selectedElement = target;
+                selectedCoord = currentCoord;
+                target.classList.add('selected');
+            } 
+            // Undo selection step if clicked twice
+            else if (selectedElement === target) {
+                target.classList.remove('selected');
+                selectedElement = null;
+                selectedCoord = null;
+            } 
+            // Second selection step: Execute the data array swap
+            else {
+                const p1_val = sched[selectedCoord.round][selectedCoord.group][selectedCoord.slot];
+                const p2_val = sched[currentCoord.round][currentCoord.group][currentCoord.slot];
+
+                // Swap indices in the matrix
+                sched[selectedCoord.round][selectedCoord.group][selectedCoord.slot] = p2_val;
+                sched[currentCoord.round][currentCoord.group][currentCoord.slot] = p1_val;
+
+                // Reset references and re-render
+                selectedElement = null;
+                selectedCoord = null;
+                updateUI();
+            }
+        }
+
+        // Initialize UI display on page load
+        updateUI();
+    </script>
+</body>
+</html>
