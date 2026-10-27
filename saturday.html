@@ -679,7 +679,7 @@
                             });
 
                             //console.log("Data Length = " + data.length);
-                            //console.log(data);
+                            console.log(data);
 
                             document.getElementById("panel").style.display = "none";
                             document.getElementById("mainpageleft").innerText = "Leaderboard for Robinson Nobilis on Saturday";
@@ -932,12 +932,16 @@
                 //
 
                 // sort out the birdies
+                // one eagle = 2 birdies
                 let elementBirdGif = element.querySelector(".birdgif");
                 let elementBirdGifNumber = element.querySelector(".birdgifnumber");
                 if (elementName.innerHTML == nom) {
                     elementScore.innerHTML = points;
                 }
-                var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
+                var birdnum = data.find((team) => team.players === elementName.innerHTML).birdieclub;
+
+                console.log("birdnum = " + birdnum);
+
                 if (birdnum > 0) {
                     document.getElementById("birdgif" + i).style.visibility = "visible";
                     document.getElementById("birdgifnumber" + i).className = "numbird";
