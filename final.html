@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+        <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+        <title>spain2026</title>
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 100vw;
+                height: 100lvh;
+            }
+
+            body {
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3lvh;
+                background: navy;
+            }
+
+            #mainpage {
+                background: navy;
+                width: 92.5%;
+                overflow: hidden;
+                max-width: 100%;
+                float: left;
+                text-align: left;
+                color: white;
+                height: auto;
+            }
+
+            #mainpageleft {
+                writing-mode: vertical-lr;
+                float: left;
+                color: dodgerBlue;
+                width: 7.5%;
+                padding-left: 1.5vw;
+                padding-top: 5lvh;
+                //fade-in
+                opacity: 1;
+                animation-name: fade-in;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in;
+                animation-duration: 2s;
+                font-size: 3vh;
+            }
+
+            tr {
+                text-align: center;
+            }
+
+            td {
+                width: calc(100vw / 6);
+            }
+
+            .spacer1lvh {
+                display: flex;
+                padding: 1lvh;
+            }
+
+            /* for each day */
+            #createleaderboarditems {
+                text-align: center;
+                color: white;
+                font-size: 4lvh;
+                height: auto;
+                display: block;
+            }
+
+            .team {
+                width: 90%;
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+                /* number 0f players + 5 ???        */
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+                //height: calc(79lvh / 16); /* 16 players*/
+                height: calc(100lvh / 17); /* 12 players*/
+                margin-left: 5%;
+                margin-top: 1lvh;
+                margin-bottom: 1lvh;
+                background: rgba(105, 105, 105, 0.8);
+                //box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                /* how fast ? is */
+                transition-duration: 200ms;
+                border-radius: 5px; //10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                //background-clip: padding-box;
+                margin-left: 100%;
+                box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            /* how fast it slides in */
+            .animate {
+                transform: translate3d(-105%, 0, 0);
+                -webkit-transition: transform 0.5s ease;
+            }
+
+            .teamhcp {
+                width: 90%;
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+                /* number 0f players + 5 ???        */
+                /* ================================ */
+                /* ================================ */
+                /* ================================ */
+                //height: calc(79lvh / 16); /* 16 players*/
+                height: calc(100lvh / 17); /* 12 players*/
+                margin-left: 5%;
+                margin-top: 1%;
+                margin-bottom: 1%;
+                padding-left: 5vw;
+                background: rgba(105, 105, 105, 0.8);
+                box-shadow: 0 3px 5px black;
+                display: flex;
+                align-items: center;
+                transition-property: top;
+                /* how fast ? is */
+                transition-duration: 500ms;
+                border-radius: 5px; //10px;
+                transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .name {
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3lvh;
+                font-weight: 400;
+            }
+
+            .namehcp {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                font-size: 3lvh;
+                font-weight: 400;
+            }
+
+            .scores {
+                width: 40%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5lvh;
+            }
+
+            .tees {
+                width: 35%;
+                font-size: 2lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 5lvh;
+            }
+
+            #tees0, #tees1, #tees2, #tees3,
+            #hcps0, #hcps1, #hcps2, #hcps3,
+            #namehcp0, #namehcp1, #namehcp2, #namehcp3 {
+                color: white;
+            }
+
+            #tees4, #tees5, #tees6, #tees7,
+            #hcps4, #hcps5, #hcps6, #hcps7,
+            #namehcp4, #namehcp5, #namehcp6, #namehcp7 {
+                color: cyan;
+            }
+
+            #tees8, #tees9, #tees10, #tees11,
+            #hcps8, #hcps9, #hcps10, #hcps11,
+            #namehcp8, #namehcp9, #namehcp10, #namehcp11 {
+                color: yellow;
+            }
+
+            #tees12, #tees13, #tees14, #tees15,
+            #hcps12, #hcps13, #hcps14, #hcps15,
+            #namehcp12, #namehcp13, #namehcp14, #namehcp15 {
+                color: limeGreen;
+            }
+
+            .position {
+                width: 20%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcps {
+                width: 12%;
+                font-size: 3lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .hcpsadj {
+                padding-left: 6lvh;
+                width: auto;
+                font-size: 2.5lvh;
+                font-weight: 400;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            #footerstats {
+                position: absolute;
+                bottom: 200px;
+                width: 100%;
+                font-size: 2.5lvh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .birdgif, .birdgifnumber {
+                width: 10%;
+                visibility: hidden;
+            }
+
+            .numbird {
+                width: 10%;
+                visibility: hidden;
+                text-align: center;
+                color: cyan;
+                font-size: 2lvh;
+                font-style: italic;
+            }
+
+            .birdimg {
+                height: 3.3lvh;
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+
+            #statsinfo {
+                width: 300px;
+                height: 300px;
+                border: 1px solid cyan;
+                display: flex;
+            }
+
+            #toptr {
+                color: cyan;
+            }
+
+            #statspanel {
+                display: none;
+                position: fixed;
+                bottom: 25lvh;
+                color: white;
+                font-size: 4vw;
+                width: 96%;
+                margin-left: 2%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                box-shadow: 0 3px 5px black;
+                align-items: center;
+                border-radius: 10px;
+                //border: 1px solid silver;
+                animation-name: expandfrommiddle;
+                animation-duration: 0.7s;
+                animation-timing-function: ease-out;
+            }
+
+            @keyframes expandfrommiddle {
+                from {
+                        scale: 0.1;
+                        opacity: 0%;
+                    }
+                to {
+                        scale: 1;
+                        opacity: 100%;
+                    }
+            }
+
+            @keyframes fade-in {
+                from {
+                        opacity: 0%;
+                        scale: 0.2;
+                    }
+                to {
+                        opacity: 100%;
+                        scale: 1;
+                    }
+            }
+
+            @keyframes slide-in {
+                from {
+                        translate: 0 -100lvh;
+                }
+                to {
+                        translate: 0 0;
+                }
+            }
+
+            /* DivTable.com */
+            tr {
+                color: white;
+                background: black;
+                font-size: 2lvh;
+            }
+
+            .static {
+                color: cyan;
+            }
+
+            .bg {
+                font-size: 3lvh;
+            }
+
+            #panel {
+                display: none;
+                position: fixed;
+                top: 0;
+                text-align: center;
+                justify-content: center;
+                height: 100%;
+                width: 100%;
+                left: 0;
+                background: black;
+                color: white;
+                font-family: arial;
+                font-size: 7lvh;
+                border-radius: 5px;
+                padding: 5lvh;
+                padding-top: 20lvh;
+            }
+
+            .container {
+                width: 100vw;
+                height: 40lvh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: navy;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: center;
+                align-content: center;
+            }
+
+            .flex {
+                min-height: 60pt;
+            }
+
+            @keyframes loading {
+                0% {
+                    width: 50pt;
+                    height: 50pt;
+                    margin-top: 0;
+                }
+                25% {
+                    height: 4pt;
+                    margin-top: 23pt;
+                }
+                50% {
+                    width: 4pt;
+                }
+                75% {
+                    width: 50pt;
+                }
+                100% {
+                    width: 50pt;
+                    height: 50pt;
+                    margin-top: 0;
+                }
+            }
+
+            .loader {
+                    width: 50pt;
+                    height: 50pt;
+                    border-radius: 100%;
+                    border: cyan 4pt solid;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background-color: transparent;
+                    animation: loading 1s infinite;
+            }
+
+            .load-text {
+                    padding-top: 15px;
+                    text-align: center;
+                    font-size: 3lvh;
+                    color: cyan;
+            }
+
+            table {
+                border-collapse: collapse;
+                background: black;
+            }
+
+            #back {
+                position: absolute;
+                left: 5vw;
+                top: 5vw;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="mainpageleft"></div>
+        <div id="mainpage">
+            <!-- leaderboard -->
+            <div class="headerwrapper">
+
+                <!--
+                <div id="playersList"></div>
+-->
+            </div>
+            <div id="createleaderboarditems">
+                <!-- this is overwritten on start -->
+                <div class="container">
+                    <div class="flex">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="load-text">Loading...</div>
+                </div>
+                <!-- end of this is overwritten on start -->
+            </div>
+        </div>
+
+        <div style="margin-top: 8px"></div>
+
+        <!-- popup stats panel -->
+        <div id="statspanel">
+            <img id="back" src="close.png" height="50" width="50" onclick="hideStatsPanel()" />
+
+            <!-- HCP graph -->
+            <canvas id="myChart" style="width: 100%; max-width: 100%; height: 100%; max-height: 100%"> </canvas>
+        </div>
+        <!-- popup panel -->
+        <div id="panel" onclick="closePanel()"></div>
+
+        <!-- spacer -->
+        <div class="spacer1vh"></div>
+        <script>
+            //=================================================================================
+            // this runs on startup or reload
+            //
+            //=================================================================================
+            // prevent default img menu of options
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+            });
+
+            // declare global variables
+            var childtxt;
+            var data;
+            var getDataRetryCount = 0;
+            // Define the sleep function
+            const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+            // global to keep track of screens and not allow interuption
+            var allowSwitch = "scores"; // scores > birdies > par 3 > par 5
+            //===========================
+            // this code runs at startup
+            //===========================
+            getData();
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            //=============================================================
+            // async function getData()
+            // - gets results data
+            //=============================================================
+            async function getData() {
+                var url = "https://opensheet.elk.sh/1Y4wLTqSUd4lkYlgsFiPpbgi6e4rAKVqo1wW32_7NBSQ/resultsFinal";
+
+                for (let attempt = 0; attempt < 5; attempt++) {
+                    const timeout = attempt * 1000 + 2000;
+
+                    try {
+                        //console.log("timeout delay = " + timeout);
+
+                        const dataStream = await fetch(url, {
+                            signal: AbortSignal.timeout(timeout)
+                        });
+
+                        if (!dataStream.ok) {
+                            throw new Error(`Response status: ${dataStream.status}`);
+                        }
+
+                        data = await dataStream.json();
+
+                        $("#pagetwo").fadeIn(500);
+                        document.getElementById("panel").style.display = "none";
+
+                        if (data[0].players.length > 0) {
+                        document.getElementById("panel").style.display = "none";
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall positions";
+                            useDataResults();
+                        } else {
+                            useDataHcp();
+                        }
+                        return; // success — stop retrying
+                    } catch (err) {
+                        console.error(err);
+                        if (err.name === "TimeoutError") {
+                            console.error("Timeout: server too busy");
+                        } else if (err.name === "AbortError") {
+                            console.error("Fetch aborted by user action (browser stop button, closing tab, etc.)");
+                        } else {
+                            console.error(`Error: type: ${err.name}, message: ${err.message}`);
+                        }
+
+                        if (attempt < 4) {
+                            const retryNumber = attempt + 1;
+
+                            document.getElementsByClassName("load-text")[0].innerText = `retrying ${retryNumber}/5`;
+
+                            await sleep(retryNumber * 1000 + 2000);
+                        } else {
+                            document.getElementsByClassName("load-text")[0].innerText = "Please try again later.";
+                        }
+                    }
+                }
+            }
+
+            //=============================================================
+            // function - to run alternative results screens
+            //=============================================================
+
+            document.getElementById("mainpage").style.display = "block";
+
+            var SwipeWidth = window.innerWidth / 3;
+            var SwipeWidthMax = 320;
+
+            if (SwipeWidth > SwipeWidthMax) {
+                SwipeWidth = SwipeWidthMax;
+            }
+
+            var SwipeStartX = null;
+            var SwipeEndX = null;
+            var SwipeLengthX = null;
+
+            var SwipeStartY = null;
+            var SwipeEndY = null;
+            var SwipeLengthY = null;
+
+            var SwipeArea = document.documentElement;
+
+            SwipeArea.addEventListener("touchstart", SwipeStart, false);
+            SwipeArea.addEventListener("touchend", SwipeEnd, false);
+
+            function SwipeStart(evt) {
+                SwipeStartX = evt.changedTouches[0].clientX;
+                SwipeStartY = evt.changedTouches[0].clientY;
+            }
+
+            function SwipeEnd(evt) {
+                SwipeEndX = evt.changedTouches[0].clientX;
+                SwipeEndY = evt.changedTouches[0].clientY;
+
+                SwipeLengthX = SwipeStartX - SwipeEndX;
+                SwipeLengthY = SwipeStartY - SwipeEndY;
+
+                if (Math.abs(SwipeLengthX) > Math.abs(SwipeLengthY)) {
+                    if (SwipeLengthX > SwipeWidth) {
+                        if (document.getElementById("mainpageleft").innerText == "Leaderboard for Overall positions") {
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Birdies Champion";
+                            allowSwipe = "birdies";
+                            textEvent("Leaderboard for Birdies Champion");
+                            k = 1;
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "birdies") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdateBirdies(el.namebirdies, el.scorebirdies, el.positionbirdies, i);
+                                    }
+                                }, k * 100);
+                            });
+                            /* birdies move to par 3 */
+                            } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Birdies Champion") {
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Par 3 Champion";
+                            allowSwipe = "par3";
+                            textEvent("Leaderboard for Par 3 Champion");
+                            k = 1;
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "par3") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdatep3(el.namep3, el.scorep3, el.positionp3, i);
+                                    }
+                                }, k * 100);
+                            });
+                        } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Par 3 Champion") {
+                            /* par 3 move to par 5 */
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Par 5 Champion";
+                            allowSwipe = "par5";
+                            textEvent("Leaderboard for Par 5 Champion");
+                            k = 1;
+
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "par5") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdatep5(el.namep5, el.scorep5, el.positionp5, i);
+                                    }
+                                }, k * 100);
+                            });
+                        }
+                    } else if (SwipeLengthX < SwipeWidth) {
+                        /* right swipe */
+                        /* par 5 > par 3 > birdies > scores */
+                        /* par 5 move to par 3 */
+                        if (document.getElementById("mainpageleft").innerText == "Leaderboard for Par 5 Champion") {
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Par 3 Champion";
+                            allowSwipe = "par3";
+                            textEvent("Leaderboard for Par 3 Champion");
+                            k = 1;
+
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "par3") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdatep3(el.namep3, el.scorep3, el.positionp3, i);
+                                    }
+                                }, k * 100);
+                            });
+                            /* par 3 move to birdies */
+                        } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Par 3 Champion") {
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Birdies Champion";
+                            allowSwipe = "birdies";
+                            textEvent("Leaderboard for Birdies Champion");
+                            k = 1;
+
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "birdies") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdateBirdies(el.namebirdies, el.scorebirdies, el.positionbirdies, i);
+                                    }
+                                }, k * 100);
+                            });
+                        } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Birdies Champion") {
+                            /* birdies move to scores */
+                            //document.getElementById("panel").style.display = "none";
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall positions";
+                            allowSwipe = "scores";
+                            textEvent("Leaderboard for Overall positions");
+                            k = 1;
+
+                            data.forEach((el, i) => {
+                                document.getElementById("position" + i).style.color = "gray";
+                                document.getElementById("name" + i).style.color = "gray";
+                                document.getElementById("scores" + i).style.color = "gray";
+                                //console.log(el.players, el.playerpoints);
+                                k++;
+                                setTimeout(function () {
+                                    if (allowSwipe == "scores") {
+                                        document.getElementById("position" + i).style.color = "white";
+                                        document.getElementById("name" + i).style.color = "white";
+                                        document.getElementById("scores" + i).style.color = "white";
+                                        bodyUpdateScores(el.players, el.playerpoints, i);
+                                    }
+                                }, k * 100);
+                            });
+                        }
+                    }
+                }
+            }
+
+            //=============================================================
+            // functions - run when called
+            //=============================================================
+
+            function useDataResults() {
+                let container = document.getElementById("createleaderboarditems");
+                // empty container
+                container.innerHTML = "";
+                //console.log(data);
+                data.forEach((el, i) => {
+                    let box = document.createElement("div");
+                    box.id = "box" + i;
+                    box.className = "team";
+                    box.setAttribute("onclick", "showStats(this.id);return false;");
+
+                    let name = document.createElement("span");
+                    name.id = "name" + i;
+                    name.className = "name";
+                    name.innerHTML = el.players;
+
+                    let scores = document.createElement("span");
+                    scores.id = "scores" + i;
+                    scores.className = "scores";
+
+                    let position = document.createElement("span");
+                    position.id = "position" + i;
+                    position.className = "position";
+                    position.innerHTML = i;
+
+                    let birdgif = document.createElement("span");
+                    birdgif.id = "birdgif" + i;
+                    birdgif.className = "birdgif";
+
+                    let birdgifnumber = document.createElement("span");
+                    birdgifnumber.id = "birdgifnumber" + i;
+                    birdgifnumber.className = "birdgifnumber";
+
+                    let birdimg = document.createElement("img");
+                    birdimg.id = "birdimg" + i;
+                    birdimg.className = "birdimg";
+                    birdimg.src = "bird.gif";
+
+                    let birdcount = document.createElement("img");
+                    birdcount.id = "birdcount" + i;
+                    birdcount.className = "birdimg";
+
+                    birdgif.appendChild(birdimg);
+                    birdgifnumber.appendChild(birdcount);
+
+                    box.appendChild(position);
+                    box.appendChild(name);
+
+                    box.appendChild(birdgif);
+                    box.appendChild(birdgifnumber);
+
+                    box.appendChild(scores);
+
+                    container.appendChild(box);
+                    // fade the initial view
+                    container.style.opacity = 0.3;
+                });
+
+                var k = 0;
+
+                // do proper display
+                document.getElementById("createleaderboarditems").style.opacity = 1;
+
+                data.forEach((el, i) => {
+                    k++;
+                    setTimeout(function () {
+                        bodyUpdate(el.players, el.playerpoints, i);
+                    }, k * 300);
+                });
+            }
+
+            function bodyUpdate(nom, points, i) {
+                let pos = i + 1;
+                //console.log("bodyUpdate = ", nom, points);
+                data.find((team) => team.players === nom);
+                // now sort out positions for same scores
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+                // cope with first position
+                if (i < 1) {
+                    let previousElement = AllTeams[i];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    elementPos.innerHTML = pos;
+                } else {
+                    let previousElement = AllTeams[i - 1];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    // if this score is the same as previous - same position
+                    if (previousElementScore.innerHTML == points) {
+                        elementPos.innerHTML = previousElementPos.innerHTML;
+                    } else {
+                        elementPos.innerHTML = pos;
+                    }
+                }
+                // end of cope with first position
+                //
+
+                // sort out the birdies
+                let elementBirdGif = element.querySelector(".birdgif");
+                let elementBirdGifNumber = element.querySelector(".birdgifnumber");
+                if (elementName.innerHTML == nom) {
+                    elementScore.innerHTML = points;
+                }
+                var birdnum = data.find((team) => team.players === elementName.innerHTML).bird;
+                if (birdnum > 0) {
+                    document.getElementById("birdgif" + i).style.visibility = "visible";
+                    document.getElementById("birdgifnumber" + i).className = "numbird";
+                    document.getElementById("birdgifnumber" + i).innerText = birdnum;
+                    document.getElementById("birdgifnumber" + i).style.visibility = "visible";
+                }
+
+                // sort out the birdies
+                for (eye = 0; eye < 12; eye++) {
+                    if (document.getElementById("birdgifnumber" + eye).innerText > 0) {
+                        document.getElementById("birdgif" + eye).style.visibility = "visible";
+                        document.getElementById("birdgifnumber" + eye).style.visibility = "visible";
+                    }
+                }
+
+                // fade in results
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+                elementBirdGif.style.opacity = 0;
+                elementBirdGifNumber.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+                elementBirdGif.style.transition = "opacity 3s";
+                elementBirdGifNumber.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+                elementBirdGif.style.opacity = 1;
+                elementBirdGifNumber.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            function showStats(id) {
+                if (document.getElementById(id).hasChildNodes()) {
+                    childtxt = document.getElementById(id).childNodes[1].innerText;
+                    document.getElementById("statspanel").style.display = "flex";
+                    //arrMyPoints = [eagles, birdies, pars, bogeys, worse];
+                    // get correct players stats
+                    let newEagle1 = data.find((searchplayer) => searchplayer.players === childtxt).eagle1;
+                    let newBirdie1 = data.find((searchplayer) => searchplayer.players === childtxt).birdie1;
+                    let newPar1 = data.find((searchplayer) => searchplayer.players === childtxt).par1;
+                    let newBogey1 = data.find((searchplayer) => searchplayer.players === childtxt).bogey1;
+                    let newWorse1 = data.find((searchplayer) => searchplayer.players === childtxt).worse1;
+
+                    let newEagle2 = data.find((searchplayer) => searchplayer.players === childtxt).eagle2;
+                    let newBirdie2 = data.find((searchplayer) => searchplayer.players === childtxt).birdie2;
+                    let newPar2 = data.find((searchplayer) => searchplayer.players === childtxt).par2;
+                    let newBogey2 = data.find((searchplayer) => searchplayer.players === childtxt).bogey2;
+                    let newWorse2 = data.find((searchplayer) => searchplayer.players === childtxt).worse2;
+
+                    let newEagle3 = data.find((searchplayer) => searchplayer.players === childtxt).eagle3;
+                    let newBirdie3 = data.find((searchplayer) => searchplayer.players === childtxt).birdie3;
+                    let newPar3 = data.find((searchplayer) => searchplayer.players === childtxt).par3;
+                    let newBogey3 = data.find((searchplayer) => searchplayer.players === childtxt).bogey3;
+                    let newWorse3 = data.find((searchplayer) => searchplayer.players === childtxt).worse3;
+
+                    let newEagle4 = data.find((searchplayer) => searchplayer.players === childtxt).eagle4;
+                    let newBirdie4 = data.find((searchplayer) => searchplayer.players === childtxt).birdie4;
+                    let newPar4 = data.find((searchplayer) => searchplayer.players === childtxt).par4;
+                    let newBogey4 = data.find((searchplayer) => searchplayer.players === childtxt).bogey4;
+                    let newWorse4 = data.find((searchplayer) => searchplayer.players === childtxt).worse4;
+
+                    let newEagle5 = data.find((searchplayer) => searchplayer.players === childtxt).eagle5;
+                    let newBirdie5 = data.find((searchplayer) => searchplayer.players === childtxt).birdie5;
+                    let newPar5 = data.find((searchplayer) => searchplayer.players === childtxt).par5;
+                    let newBogey5 = data.find((searchplayer) => searchplayer.players === childtxt).bogey5;
+                    let newWorse5 = data.find((searchplayer) => searchplayer.players === childtxt).worse5;
+
+                    arrMyPoints1 = [newEagle1, newBirdie1, newPar1, newBogey1, newWorse1];
+                    arrMyPoints2 = [newEagle2, newBirdie2, newPar2, newBogey2, newWorse2];
+                    arrMyPoints3 = [newEagle3, newBirdie3, newPar3, newBogey3, newWorse3];
+                    arrMyPoints4 = [newEagle4, newBirdie4, newPar4, newBogey4, newWorse4];
+                    arrMyPoints5 = [newEagle5, newBirdie5, newPar5, newBogey5, newWorse5];
+
+                    drawGraph(arrMyPoints1, arrMyPoints2, arrMyPoints3, arrMyPoints4, arrMyPoints5);
+                }
+            }
+
+            function hideStatsPanel() {
+                document.getElementById("statspanel").style.display = "none";
+            }
+
+            function drawGraph(arrMyPoints1, arrMyPoints2, arrMyPoints3, arrMyPoints4, arrMyPoints5) {
+                var PlayerGraph;
+                const xValues = ["eagles", "birdies", "pars", "bogeys", "worse"];
+                var barColors = ["#8867e1", "#be59f5", "#65b0d6", "#40ffc6", "#c8df6f"];
+                var borderColors = ["black"];
+                var ctx = document.getElementById("myChart");
+                try {
+                    var PlayerGraph = Chart.getChart("myChart");
+                    if (PlayerGraph) {
+                        PlayerGraph.destroy();
+                    }
+                } catch (e) {
+                    console.log("error: " + e);
+                }
+
+                Chart.defaults.font.size = 16;
+                Chart.defaults.color = "white";
+
+                const footer = (tooltipItems) => {
+                    let sum = 0;
+                    tooltipItems.forEach(function (tooltipItem) {
+                        sum += tooltipItem.parsed.y;
+                    });
+                    return "Sum: " + sum;
+                };
+
+                var PlayerGraph = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [
+                            {
+                                backgroundColor: barColors[0],
+                                data: arrMyPoints1,
+                                borderColor: borderColors[0],
+                                borderWidth: 2,
+                                borderSkipped: false
+                            },
+                            {
+                                backgroundColor: barColors[1],
+                                data: arrMyPoints2,
+                                borderColor: borderColors[0],
+                                borderWidth: 2,
+                                borderSkipped: false
+                            },
+                            {
+                                backgroundColor: barColors[2],
+                                data: arrMyPoints3,
+                                borderColor: borderColors[0],
+                                borderWidth: 2,
+                                borderSkipped: false
+                            },
+                            {
+                                backgroundColor: barColors[3],
+                                data: arrMyPoints4,
+                                borderColor: borderColors[0],
+                                borderWidth: 2,
+                                borderSkipped: false
+                            },
+                            {
+                                backgroundColor: barColors[4],
+                                data: arrMyPoints5,
+                                borderColor: borderColors[0],
+                                borderWidth: 2,
+                                borderSkipped: false
+                            }
+                        ]
+                    },
+
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "     " + childtxt + " - How you've played ..."
+                            },
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                                // 1. Reverse order of displayed tooltip items
+                                itemSort: function (a, b) {
+                                    return b.datasetIndex - a.datasetIndex;
+                                },
+                                callbacks: {
+                                    // 2. Sum all active stacked values and return in a footer
+                                    footer: function (tooltipItems) {
+                                        let sum = 0;
+                                        tooltipItems.forEach(function (item) {
+                                            sum += item.parsed.y;
+                                        });
+                                        return "Total: " + sum.toLocaleString();
+                                    }
+                                }
+                            }
+                        },
+                        responsive: true,
+                        scales: {
+                            x: {
+                                stacked: true,
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                stacked: true,
+                                grid: {
+                                    display: true,
+                                    color: "#3A3B3C"
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function bodyUpdateBirdies(nom, points, pos, i) {
+                data.find((team) => team.namebirdies === nom);
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+
+                elementPos.innerHTML = pos;
+                elementScore.innerHTML = points;
+                elementName.innerHTML = nom;
+
+                // sort out the birdies
+                for (eye = 0; eye < 12; eye++) {
+                    document.getElementById("birdgif" + eye).style.visibility = "hidden";
+                    document.getElementById("birdgifnumber" + eye).style.visibility = "hidden";
+                }
+
+                // fade in results
+
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            function bodyUpdatep3(nom, points, pos, i) {
+                data.find((team) => team.namebirdies === nom);
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+
+                elementPos.innerHTML = pos;
+                elementScore.innerHTML = points;
+                elementName.innerHTML = nom;
+
+                // sort out the birdies
+                for (eye = 0; eye < 12; eye++) {
+                    document.getElementById("birdgif" + eye).style.visibility = "hidden";
+                    document.getElementById("birdgifnumber" + eye).style.visibility = "hidden";
+                }
+
+                // fade in results
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            function bodyUpdatep5(nom, points, pos, i) {
+                data.find((team) => team.namebirdies === nom);
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+
+                elementPos.innerHTML = pos;
+                elementScore.innerHTML = points;
+                elementName.innerHTML = nom;
+
+                // sort out the birdies
+                for (eye = 0; eye < 12; eye++) {
+                    document.getElementById("birdgif" + eye).style.visibility = "hidden";
+                    document.getElementById("birdgifnumber" + eye).style.visibility = "hidden";
+                }
+
+                // fade in results
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            async function bodyUpdateScores(nom, points, i) {
+                let pos = i + 1;
+
+                data.find((team) => team.namebirdies === nom);
+                let AllTeams = Array.from(document.querySelectorAll(".team"));
+                let element = AllTeams[i];
+                let elementPos = element.querySelector(".position");
+                let elementScore = element.querySelector(".scores");
+                let elementName = element.querySelector(".name");
+
+                elementPos.innerHTML = pos;
+                elementScore.innerHTML = points;
+                elementName.innerHTML = nom;
+
+                // cope with first position
+                if (i < 1) {
+                    let previousElement = AllTeams[i];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    elementPos.innerHTML = pos;
+                } else {
+                    let previousElement = AllTeams[i - 1];
+                    let previousElementPos = previousElement.querySelector(".position");
+                    let previousElementScore = previousElement.querySelector(".scores");
+                    // if this score is the same as previous - same position
+                    if (previousElementScore.innerHTML == points) {
+                        elementPos.innerHTML = previousElementPos.innerHTML;
+                    } else {
+                        elementPos.innerHTML = pos;
+                    }
+                }
+                // end of cope with first position
+                //
+
+                // sort out the birdies
+
+                //for (eye = 0; eye < 12; eye++) {
+                //await sleep(300);
+                if (document.getElementById("birdgifnumber" + i)) {
+                    // + converts to number
+                    if (+document.getElementById("birdgifnumber" + i).innerHTML > 0) {
+                        document.getElementById("birdgif" + i).style.visibility = "visible";
+                        document.getElementById("birdgifnumber" + i).style.visibility = "visible";
+                    }
+                }
+                //}
+
+                // fade in results
+                elementPos.style.opacity = 0;
+                elementName.style.opacity = 0;
+                elementScore.style.opacity = 0;
+
+                elementPos.style.transition = "opacity 3s";
+                elementName.style.transition = "opacity 3s";
+                elementScore.style.transition = "opacity 3s";
+
+                elementPos.style.opacity = 1;
+                elementName.style.opacity = 1;
+                elementScore.style.opacity = 1;
+
+                element.classList.add("animate");
+            }
+
+            /* -- Text random effect -- */
+            function textEvent(originaltext) {
+                let result = " ";
+                const charlength = document.getElementById("mainpageleft").innerText.length;
+                //var originaltext = document.getElementById("headermainpage").innerText;
+                const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz".substring(0, charlength);
+                var count = 0;
+                var tempresult = "";
+                // set color
+                document.getElementById("mainpageleft").style.color = "dodgerBlue";
+                clearInterval(interval);
+                var interval = setInterval(() => {
+                    count++;
+                    result = "";
+                    tempresult = "";
+                    // create a string
+                    for (let i = 0; i < charlength; i++) {
+                        tempresult = letters.charAt(Math.floor(Math.random() * charlength));
+                        if (originaltext.charAt(i) == " ") {
+                            tempresult = " ";
+                        }
+                        result += tempresult;
+                    }
+                    console.log(result);
+                    // write string
+                    document.getElementById("mainpageleft").innerText = result;
+                    if (count > 10) {
+                        clearInterval(interval);
+                        document.getElementById("mainpageleft").innerText = originaltext;
+                        document.getElementById("mainpageleft").style.color = "dodgerBlue";
+                    }
+                }, 30);
+            }
+        </script>
+    </body>
+</html>
