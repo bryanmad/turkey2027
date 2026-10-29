@@ -426,6 +426,23 @@
                 left: 5vw;
                 top: 5vw;
             }
+
+             #warning {
+                                    display: none;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    background: indigo;
+                                    width: 100vw;
+                                    height: 100vh;
+                                    z-index: 999;
+                                    text-align: center;
+                                    color: white;
+                                    padding-top: 40vh;
+                                    font-size: 6vh;
+                                    font-family: 'Kalam';
+                                  }
+
         </style>
     </head>
     <body>
@@ -462,13 +479,32 @@
         <!-- popup panel -->
         <div id="panel" onclick="closePanel()"></div>
 
+        <div id="warning">Not available in landscape orientation</div>
+
         <!-- spacer -->
         <div class="spacer1vh"></div>
         <script>
-            //=================================================================================
+        //=================================================================================
             // this runs on startup or reload
             //
             //=================================================================================
+        // Detect whether device supports orientationchange event, otherwise fall back to
+      // the resize event.
+      var supportsOrientationChange = "onorientationchange" in window,
+        orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+
+      window.addEventListener(
+        orientationEvent,
+        function () {
+          if (window.orientation == 0) {
+            document.getElementById("warning").style.display = "none";
+          } else if (window.orientation == 90 || window.orientation == -90) {
+            document.getElementById("warning").style.display = "block";
+          }
+        },
+        false
+      );
+
             // prevent default img menu of options
             document.addEventListener("contextmenu", (event) => {
                 event.preventDefault();
