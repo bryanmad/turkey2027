@@ -47,7 +47,6 @@
                 width: 7.5%;
                 padding-left: 1.5vw;
                 padding-top: 5lvh;
-                //fade-in
                 opacity: 1;
                 animation-name: fade-in;
                 animation-iteration-count: 1;
@@ -87,22 +86,19 @@
                 /* ================================ */
                 /* ================================ */
                 /* ================================ */
-                //height: calc(79lvh / 16); /* 16 players*/
+                //height: calc(100lvh / 21); /* 16 players*/
                 height: calc(100lvh / 17); /* 12 players*/
                 margin-left: 5%;
                 margin-top: 1lvh;
                 margin-bottom: 1lvh;
                 background: rgba(105, 105, 105, 0.8);
-                //box-shadow: 0 3px 5px black;
                 display: flex;
                 align-items: center;
                 transition-property: top;
-                /* how fast ? is */
                 transition-duration: 200ms;
                 border-radius: 5px; //10px;
                 transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 border: 2px solid rgba(255, 255, 255, 0.3);
-                //background-clip: padding-box;
                 margin-left: 100%;
                 box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.2);
             }
@@ -122,7 +118,7 @@
                 /* ================================ */
                 /* ================================ */
                 /* ================================ */
-                //height: calc(79lvh / 16); /* 16 players*/
+                //height: calc(100lvh / 21); /* 16 players*/
                 height: calc(100lvh / 17); /* 12 players*/
                 margin-left: 5%;
                 margin-top: 1%;
@@ -133,9 +129,8 @@
                 display: flex;
                 align-items: center;
                 transition-property: top;
-                /* how fast ? is */
                 transition-duration: 500ms;
-                border-radius: 5px; //10px;
+                border-radius: 5px;
                 transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 border: 2px solid rgba(255, 255, 255, 0.3);
             }
@@ -289,7 +284,6 @@
                 box-shadow: 0 3px 5px black;
                 align-items: center;
                 border-radius: 10px;
-                //border: 1px solid silver;
                 animation-name: expandfrommiddle;
                 animation-duration: 0.7s;
                 animation-timing-function: ease-out;
@@ -430,20 +424,20 @@
             }
 
              #warning {
-                                    display: none;
-                                    position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    background: indigo;
-                                    width: 100vw;
-                                    height: 100vh;
-                                    z-index: 999;
-                                    text-align: center;
-                                    color: white;
-                                    padding-top: 40vh;
-                                    font-size: 6vh;
-                                    font-family: 'Kalam';
-                                  }
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: indigo;
+                width: 100vw;
+                height: 100vh;
+                z-index: 999;
+                text-align: center;
+                color: white;
+                padding-top: 40vh;
+                font-size: 6vh;
+                font-family: 'Kalam';
+             }
 
 
 
@@ -453,12 +447,7 @@
     <div id="mainpageleft"></div>
         <div id="mainpage">
             <!-- leaderboard -->
-            <div class="headerwrapper">
-
-                <!--
-                <div id="playersList"></div>
--->
-            </div>
+            <div class="headerwrapper"></div>
             <div id="createleaderboarditems">
                 <!-- this is overwritten on start -->
                 <div class="container">
@@ -490,25 +479,25 @@
         <div class="spacer1vh"></div>
         <script>
         //=================================================================================
-            // this runs on startup or reload
-            //
-            //=================================================================================
+        // this runs on startup or reload
+        //
+        //=================================================================================
         // Detect whether device supports orientationchange event, otherwise fall back to
-      // the resize event.
-      var supportsOrientationChange = "onorientationchange" in window,
+        // the resize event.
+        var supportsOrientationChange = "onorientationchange" in window,
         orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 
-      window.addEventListener(
-        orientationEvent,
-        function () {
-          if (window.orientation == 0) {
-            document.getElementById("warning").style.display = "none";
-          } else if (window.orientation == 90 || window.orientation == -90) {
-            document.getElementById("warning").style.display = "block";
-          }
-        },
-        false
-      );
+        window.addEventListener(
+          orientationEvent,
+          function () {
+            if (window.orientation == 0) {
+              document.getElementById("warning").style.display = "none";
+            } else if (window.orientation == 90 || window.orientation == -90) {
+              document.getElementById("warning").style.display = "block";
+            }
+          },
+          false
+        );
 
             // prevent default img menu of options
             document.addEventListener("contextmenu", (event) => {
@@ -736,7 +725,6 @@
                             });
                         } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Birdies Champion") {
                             /* birdies move to scores */
-                            //document.getElementById("panel").style.display = "none";
                             document.getElementById("mainpageleft").innerText = "Leaderboard for Overall positions";
                             allowSwipe = "scores";
                             textEvent("Leaderboard for Overall positions");
@@ -746,7 +734,6 @@
                                 document.getElementById("position" + i).style.color = "gray";
                                 document.getElementById("name" + i).style.color = "gray";
                                 document.getElementById("scores" + i).style.color = "gray";
-                                //console.log(el.players, el.playerpoints);
                                 k++;
                                 setTimeout(function () {
                                     if (allowSwipe == "scores") {
@@ -770,7 +757,6 @@
                 let container = document.getElementById("createleaderboarditems");
                 // empty container
                 container.innerHTML = "";
-                //console.log(data);
                 data.forEach((el, i) => {
                     let box = document.createElement("div");
                     box.id = "box" + i;
@@ -839,7 +825,6 @@
 
             function bodyUpdate(nom, points, i) {
                 let pos = i + 1;
-                //console.log("bodyUpdate = ", nom, points);
                 data.find((team) => team.players === nom);
                 // now sort out positions for same scores
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
@@ -917,7 +902,7 @@
                     document.getElementById("statspanel").style.display = "flex";
 
                     //arrMyPoints = [eagles, birdies, pars, bogeys, worse];
-                    // get correct players stats
+                    // get correct players stats for each day
                     let newEagle1 = data.find((searchplayer) => searchplayer.players === childtxt).eagle1;
                     let newBirdie1 = data.find((searchplayer) => searchplayer.players === childtxt).birdie1;
                     let newPar1 = data.find((searchplayer) => searchplayer.players === childtxt).par1;
@@ -942,17 +927,12 @@
                     let newBogey4 = data.find((searchplayer) => searchplayer.players === childtxt).bogey4;
                     let newWorse4 = data.find((searchplayer) => searchplayer.players === childtxt).worse4;
 
-                    let newEagle5 = data.find((searchplayer) => searchplayer.players === childtxt).eagle5;
-                    let newBirdie5 = data.find((searchplayer) => searchplayer.players === childtxt).birdie5;
-                    let newPar5 = data.find((searchplayer) => searchplayer.players === childtxt).par5;
-                    let newBogey5 = data.find((searchplayer) => searchplayer.players === childtxt).bogey5;
-                    let newWorse5 = data.find((searchplayer) => searchplayer.players === childtxt).worse5;
-
+                    
                     arrMyPoints1 = [newEagle1, newBirdie1, newPar1, newBogey1, newWorse1];
                     arrMyPoints2 = [newEagle2, newBirdie2, newPar2, newBogey2, newWorse2];
                     arrMyPoints3 = [newEagle3, newBirdie3, newPar3, newBogey3, newWorse3];
                     arrMyPoints4 = [newEagle4, newBirdie4, newPar4, newBogey4, newWorse4];
-                    //arrMyPoints5 = [newEagle5, newBirdie5, newPar5, newBogey5, newWorse5];
+
 
                     drawGraph(arrMyPoints1, arrMyPoints2, arrMyPoints3, arrMyPoints4);
                 }
@@ -1082,129 +1062,6 @@
             }
 
 
-
-            function xxxdrawGraph(arrMyPoints1, arrMyPoints2, arrMyPoints3, arrMyPoints4, arrMyPoints5) {
-                var PlayerGraph;
-                const xValues = ["eagles", "birdies", "pars", "bogeys", "worse"];
-                var barColors = ["#8867e1", "#be59f5", "#65b0d6", "#40ffc6", "#c8df6f"];
-                var borderColors = ["black"];
-                var ctx = document.getElementById("myChart");
-                try {
-                    var PlayerGraph = Chart.getChart("myChart");
-                    if (PlayerGraph) {
-                        PlayerGraph.destroy();
-                    }
-                } catch (e) {
-                    console.log("error: " + e);
-                }
-
-                Chart.defaults.font.size = 16;
-                Chart.defaults.color = "white";
-
-                const footer = (tooltipItems) => {
-                    let sum = 0;
-                    tooltipItems.forEach(function (tooltipItem) {
-                        sum += tooltipItem.parsed.y;
-                    });
-                    return "Sum: " + sum;
-                };
-
-                var PlayerGraph = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels: xValues,
-                        datasets: [
-                            {
-                                backgroundColor: barColors[0],
-                                data: arrMyPoints1,
-                                borderColor: borderColors[0],
-                                borderWidth: 2,
-                                borderSkipped: false
-                            },
-                            {
-                                backgroundColor: barColors[1],
-                                data: arrMyPoints2,
-                                borderColor: borderColors[0],
-                                borderWidth: 2,
-                                borderSkipped: false
-                            },
-                            {
-                                backgroundColor: barColors[2],
-                                data: arrMyPoints3,
-                                borderColor: borderColors[0],
-                                borderWidth: 2,
-                                borderSkipped: false
-                            },
-                            {
-                                backgroundColor: barColors[3],
-                                data: arrMyPoints4,
-                                borderColor: borderColors[0],
-                                borderWidth: 2,
-                                borderSkipped: false
-                            },
-                            {
-                                backgroundColor: barColors[4],
-                                data: arrMyPoints5,
-                                borderColor: borderColors[0],
-                                borderWidth: 2,
-                                borderSkipped: false
-                            }
-                        ]
-                    },
-
-                    options: {
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: "     " + childtxt + " - How you've played ..."
-                            },
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                mode: "index",
-                                intersect: false,
-                                // 1. Reverse order of displayed tooltip items
-                                itemSort: function (a, b) {
-                                    return b.datasetIndex - a.datasetIndex;
-                                },
-                                callbacks: {
-                                    // 2. Sum all active stacked values and return in a footer
-                                    footer: function (tooltipItems) {
-                                        let sum = 0;
-                                        tooltipItems.forEach(function (item) {
-                                            sum += item.parsed.y;
-                                        });
-                                        return "Total: " + sum.toLocaleString();
-                                    }
-                                }
-                            }
-                        },
-                        responsive: true,
-                        scales: {
-                            x: {
-                                stacked: true,
-                                grid: {
-                                    display: false
-                                }
-                            },
-                            y: {
-                                stacked: true,
-                                grid: {
-                                    display: true,
-                                    color: "#3A3B3C"
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-
-
-
-
-
             function bodyUpdateBirdies(nom, points, pos, i) {
                 data.find((team) => team.namebirdies === nom);
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
@@ -1240,6 +1097,7 @@
                 element.classList.add("animate");
             }
 
+
             function bodyUpdatep3(nom, points, pos, i) {
                 data.find((team) => team.namebirdies === nom);
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
@@ -1274,6 +1132,7 @@
                 element.classList.add("animate");
             }
 
+
             function bodyUpdatep5(nom, points, pos, i) {
                 data.find((team) => team.namebirdies === nom);
                 let AllTeams = Array.from(document.querySelectorAll(".team"));
@@ -1307,6 +1166,7 @@
 
                 element.classList.add("animate");
             }
+
 
             async function bodyUpdateScores(nom, points, i) {
                 let pos = i + 1;
@@ -1344,8 +1204,6 @@
 
                 // sort out the birdies
 
-                //for (eye = 0; eye < 12; eye++) {
-                //await sleep(300);
                 if (document.getElementById("birdgifnumber" + i)) {
                     // + converts to number
                     if (+document.getElementById("birdgifnumber" + i).innerHTML > 0) {
@@ -1353,7 +1211,6 @@
                         document.getElementById("birdgifnumber" + i).style.visibility = "visible";
                     }
                 }
-                //}
 
                 // fade in results
                 elementPos.style.opacity = 0;
@@ -1375,7 +1232,6 @@
             function textEvent(originaltext) {
                 let result = " ";
                 const charlength = document.getElementById("mainpageleft").innerText.length;
-                //var originaltext = document.getElementById("headermainpage").innerText;
                 const letters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz".substring(0, charlength);
                 var count = 0;
                 var tempresult = "";
