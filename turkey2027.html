@@ -1116,9 +1116,10 @@
         );
 
         // grayout
-        grayedout = "no";
+        grayedout = "yes";
         if (grayedout == "yes") {
           // disable buttons
+          /*
           one.animate(
             {
               opacity: "0.2"
@@ -1149,6 +1150,7 @@
             },
             800
           );
+          */
           six.animate(
             {
               opacity: "0.2"
@@ -1161,12 +1163,14 @@
             },
             800
           );
+          /*
           eight.animate(
             {
               opacity: "0.2"
             },
             800
           );
+          */
         }
 
         menuIsOpen = true;
@@ -1361,18 +1365,14 @@
       }
 
       function doFive() {
-        // if compday then allow display, else disable
-        if (grayedout == "no") {
           // put menu back then move to results page
           setTimeout(function () {
             window.location.assign("final.html");
           }, 800);
-        } else {
-          noCompMsg();
-        }
       }
 
       function doSix() {
+      	/*
         // if compday then allow input, else disable
         if (grayedout == "no") {
           // put menu back then move to results page
@@ -1382,13 +1382,16 @@
         } else {
           noCompMsg();
         }
+        */
       }
 
       function doSeven() {
+      	/*
         // put menu back then move to results page
         setTimeout(function () {
           window.location.assign("info.html");
         }, 800);
+        */
       }
 
       function doEight() {
