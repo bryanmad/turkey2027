@@ -548,7 +548,7 @@
 
                         if (data[0].players.length > 0) {
                         document.getElementById("panel").style.display = "none";
-                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall positions";
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall Scores";
                             useDataResults();
                         } else {
                             useDataHcp();
@@ -617,7 +617,7 @@
 
                 if (Math.abs(SwipeLengthX) > Math.abs(SwipeLengthY)) {
                     if (SwipeLengthX > SwipeWidth) {
-                        if (document.getElementById("mainpageleft").innerText == "Leaderboard for Overall positions") {
+                        if (document.getElementById("mainpageleft").innerText == "Leaderboard for Overall Scores") {
                             document.getElementById("mainpageleft").innerText = "Leaderboard for Birdies Champion";
                             allowSwipe = "birdies";
                             textEvent("Leaderboard for Birdies Champion");
@@ -725,9 +725,9 @@
                             });
                         } else if (document.getElementById("mainpageleft").innerText == "Leaderboard for Birdies Champion") {
                             /* birdies move to scores */
-                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall positions";
+                            document.getElementById("mainpageleft").innerText = "Leaderboard for Overall Scores";
                             allowSwipe = "scores";
-                            textEvent("Leaderboard for Overall positions");
+                            textEvent("Leaderboard for Overall Scores");
                             k = 1;
 
                             data.forEach((el, i) => {
