@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+        <link href="originalgolf.svg" rel="icon" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="originalgolf.svg" />
+        <title>spain2026</title>
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 100vw;
+            }
+
+            body {
+                overflow: hidden;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 3vh;
+                background: Blue;
+                height: 100%;
+                width: 100%;
+            }
+
+            .child-two {
+                height: 7vh;
+                font-size: 3vh;
+                flex-direction: row;
+                //display: flex;
+                display: inline-block;
+                width: 100%;
+
+                line-height: 5vh; //100%;
+            }
+
+            #headerpagetwo {
+                color: white;
+                background: black;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #pagetwo {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100vw;
+                background: Blue;
+                display: none;
+            }
+
+            .spacer1vh {
+                display: flex;
+                padding: 1vh;
+            }
+
+            #list0,
+            #list1,
+            #list2,
+            #list3,
+            #list4,
+            #list5,
+            #list6,
+            #list7,
+            #list8,
+            #list9,
+            #list10,
+            #list11 {
+                display: block;
+                width: 100%;
+                padding: 0.7vh;
+                padding-left: 2vh;
+                font-family: Kalam;
+                font-size: 3vh;
+                color: white;
+            }
+
+            #list0 {
+                padding-top: 2vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="pagetwo">
+            <!-- leaderboard -->
+            <div class="child-two">
+                <div id="headerpagetwo">Checking Blindgolfer</div>
+                <div id="list0"></div>
+                <div id="list1"></div>
+                <div id="list2"></div>
+                <div id="list3"></div>
+                <div id="list4"></div>
+                <div id="list5"></div>
+                <div id="list6"></div>
+                <div id="list7"></div>
+                <div id="list8"></div>
+                <div id="list9"></div>
+                <div id="list10"></div>
+                <div id="list11"></div>
+            </div>
+        </div>
+        <div style="margin-top: 8px"></div>
+
+        <!-- spacer -->
+        <div class="spacer1vh"></div>
+        <script>
+            //=================================================================================
+            // this runs on startup or reload
+            //
+            //=================================================================================
+            // prevent default img menu of options
+            document.addEventListener("contextmenu", (event) => {
+                event.preventDefault();
+            });
+            $("#pagetwo").fadeIn(500);
+
+            var today;
+
+            //document.getElementById("headerpagetwo").innerText = today + " Blindgolfer";
+            getData();
+
+            async function getData() {
+                var url = "https://opensheet.elk.sh/19wHh6ZzDbElLbV7rI9FMPqy7Op0W4LDRGis3mv-XT1U/blindgolfer";
+                try {
+                    // 10 second timeout
+                    const dataStream = await fetch(url, {
+                        signal: AbortSignal.timeout(10000)
+                    });
+                    if (!dataStream.ok) {
+                        throw new Error(`Response status: ${dataStream.status}`);
+                    } else {
+                        data = await dataStream.json();
+                        today = data[0].blindgolfer;
+                        // don't need blank players
+                        data = data.filter(function (el) {
+                            return el.list !== "";
+                        });
+
+                        for (i = 0; i <= 11; i++) {
+                            if (today == "Saturday") {
+                                document.getElementById("list" + i).innerText = data[i].Saturday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Saturday Blindgolfer";
+                                }
+                            } else if (today == "Sunday") {
+                                document.getElementById("list" + i).innerText = data[i].Sunday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Sunday Blindgolfer";
+                                }
+                            } else if (today == "Monday") {
+                                document.getElementById("list" + i).innerText = data[i].Monday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Monday Blindgolfer";
+                                }
+                            } else if (today == "Tuesday") {
+                                document.getElementById("list" + i).innerText = data[i].Tuesday;
+                                if (i == 0) {
+                                    document.getElementById("headerpagetwo").innerText = "Tuesday Blindgolfer";
+                                }
+                            } else if (i == 0) {
+                                document.getElementById("list" + i).innerText = "not a competition day";
+                                document.getElementById("headerpagetwo").innerText = "No Blindgolfer";
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.error(err.message);
+                    if (err.name === "TimeoutError") {
+                        // This exception is from the abort signal
+                        console.error("Timeout: no results within 10 seconds");
+                    } else if (err.name === "AbortError") {
+                        // This exception is from the fetch itself
+                        console.error("Fetch aborted by user action (browser stop button, closing tab, etc.");
+                    } else if (err.name === "TypeError") {
+                        console.error("AbortSignal.timeout() method is not supported");
+                    } else {
+                        // A network error, or some other problem.
+                        console.error(`Error: type: ${err.name}, message: ${err.message}`);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
