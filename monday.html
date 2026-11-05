@@ -738,7 +738,7 @@
                     if (getDataRetryCount < 5) {
                         document.getElementsByClassName("load-text")[0].innerText =
                             "retrying " + getDataRetryCount + "/5";
-                        sleep(getDataRetryCount * 1000 + 2000);
+                        await sleep(getDataRetryCount * 1000 + 2000);
                         getData();
                     }
                     if (getDataRetryCount == 5) {

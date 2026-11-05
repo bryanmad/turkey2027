@@ -737,7 +737,7 @@
                     if (getDataRetryCount < 5) {
                         document.getElementsByClassName("load-text")[0].innerText =
                             "retrying " + getDataRetryCount + "/5";
-                        sleep(getDataRetryCount * 1000 + 2000);
+                        await sleep(getDataRetryCount * 1000 + 2000);
                         getData();
                     }
                     if (getDataRetryCount == 5) {
@@ -969,7 +969,7 @@
                 }
                 var birdnum = data.find((team) => team.players === elementName.innerHTML).birdieclub;
 
-                console.log("birdnum = " + birdnum);
+                console.log(nom + " birdnum = " + birdnum);
 
                 if (birdnum > 0) {
                     document.getElementById("birdgif" + i).style.visibility = "visible";
